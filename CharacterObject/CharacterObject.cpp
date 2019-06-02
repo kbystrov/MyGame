@@ -23,7 +23,7 @@ int CharacterObject::draw(sf::RenderTarget * screen) const {
     if (sprite_.getTexture()) {
         screen->draw(sprite_);
     } else {
-        err_code = DrawCircle(pos_, 2, color_, sf::Color::Transparent, screen);
+        err_code = DrawCircle(pos_, (size_.x + size_.y) / 4, color_, sf::Color::Transparent, screen);
     }
 
     return err_code;
@@ -44,7 +44,7 @@ int CharacterObject::draw(Vec pos, sf::RenderTarget * screen) const {
         sprite.setPosition (pos.x, pos.y);
         screen->draw (sprite);
     } else {
-        err_code = DrawCircle (pos_, 2, color_, sf::Color::Transparent, screen);
+        err_code = DrawCircle (pos_, (size_.x + size_.y) / 4, color_, sf::Color::Transparent, screen);
     }
 
     return err_code;

@@ -10,7 +10,9 @@ const sf::Color passColor = sf::Color::Yellow;
 
 class Passenger: public CharacterObject {
 private:
-    CharacterObject * target = nullptr;
+    bool was_checked = false; ///< @param flag of checked ticket by Train Inspector
+    bool isGoing = false; ///< @param flag of Passenger has started his movement to the doors
+    Vec  doors_coord; ///< @param Coordinates of the closest doors where Passenger will go at his station
 
 public:
     Passenger():
@@ -23,6 +25,7 @@ public:
     virtual ~Passenger() override;
 
     virtual int move() override;
+    int showTicket();
 };
 
 

@@ -12,13 +12,13 @@ const sf::Color playerColor = sf::Color::Green;
 class Player: public CharacterObject {
 public:
     Player():
-            Player(Vec(), Vec(), Vec(), sf::Sprite(), playerColor)
-    {}
+        Player(Vec(), Vec(), Vec(), sf::Sprite(), playerColor)
+        {}
     Player(Vec pos, Vec v, Vec size, sf::Sprite sprite, sf::Color color = playerColor):
-    CharacterObject(pos, v, size, sprite, color)
-    {}
+        CharacterObject(pos, v, size, sprite, color)
+        {}
 
-    ~Player();
+    ~Player() {}
 
     virtual int move() override;
 };

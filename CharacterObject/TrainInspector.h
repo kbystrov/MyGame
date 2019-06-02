@@ -23,6 +23,7 @@ public:
 
     virtual ~TrainInspector() override;
 
+    int findTarget() const;
     virtual int move() override;
 };
 
