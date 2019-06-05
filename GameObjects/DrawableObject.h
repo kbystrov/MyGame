@@ -12,7 +12,7 @@ const sf::Color defDrawColor = sf::Color::White;
 const int DEF_THICKNESS = 3;
 
 //! @class An superclass for drawable objects
-class DrawableObject: public GameObject {
+class DrawableObject: virtual public GameObject {
 protected:
     sf::Texture * texture_ = nullptr;   ///< @param The pointer to this object texture (is stored under GameEngine)
     sf::Sprite sprite_;                 ///< @param object's current sprite

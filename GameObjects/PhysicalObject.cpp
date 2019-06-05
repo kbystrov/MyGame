@@ -5,6 +5,10 @@
 
 PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size): GameObject(pos, size) {
 
+    #ifdef CTR_DEBUG
+    printf("PhysicalObject ctr!\n");
+    #endif // !CTR_DEBUG
+
     #ifdef GAME_DEBUG
     ERRNO_CHECK;
     errno = 0;

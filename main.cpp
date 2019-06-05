@@ -7,6 +7,7 @@
  */
 #include "DrawableObject.h"
 #include "PhysicalObject.h"
+#include "StaticDrawObject.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */
@@ -30,6 +31,8 @@ int main()
     ERRNO_CHECK;
 
     errno = 0;
+    StaticDrawObject * staticDrawObject = new StaticDrawObject(Vec(300,300), Vec(100,100), Vec(200, 200), nullptr, sf::Sprite(), sf::Color::Red);
+    ERRNO_CHECK;
 
     while (window.isOpen())
     {
@@ -48,6 +51,7 @@ int main()
         passenger->draw(&window);
          */
         drawable->draw(&window);
+        staticDrawObject->draw(&window);
         //window.draw(shape);
         window.display();
     }

@@ -4,6 +4,11 @@
 /** @file */
 
 DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, sf::Color color) : GameObject(pos, size) {
+
+    #ifdef CTR_DEBUG
+    printf("DrawableObject ctr!\n");
+    #endif // !CTR_DEBUG
+
     #ifdef GAME_DEBUG
     ERRNO_CHECK;
     errno = 0;

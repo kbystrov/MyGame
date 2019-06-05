@@ -5,6 +5,10 @@
 
 GameObject::GameObject(Vec pos, Vec size) {
 
+    #ifdef CTR_DEBUG
+    printf("GameObject ctr!\n");
+    #endif // !CTR_DEBUG
+
     pos_ = pos;
 
     if(size < 0){
