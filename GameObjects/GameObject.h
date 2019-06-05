@@ -22,8 +22,7 @@ protected:
     Vec size_; ///< @param character's size radius vector (x,y,...)
 
 public:
-    GameObject(): GameObject( defPos , defSize ){}
-    GameObject(Vec pos, Vec size);
+    explicit GameObject(Vec pos = defPos, Vec size = defSize);
 
     virtual ~GameObject() {}
 

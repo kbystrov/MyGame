@@ -14,6 +14,18 @@ enum Errors {
             ERR_GAMEOBJ_SETSIZE = 1,
     //! Error code: GameObject::GameObject(Vec pos, Vec size) -> size is a Vector with negative coordinates
             ERR_GAMEOBJ_CTR_SIZE,
+    //! Error code: DrawableObject::draw(sf::RenderTarget * screen) -> screen is nullptr
+            ERR_DRAWOBJ_DRAW_SIMPLE_SCREEN,
+    //! Error code: DrawableObject::draw(Vec pos, sf::RenderTarget * screen) -> screen is nullptr
+            ERR_DRAWOBJ_DRAW_POS_SCREEN,
+    /** Error code: drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen))
+     *              -> screen is nullptr
+     */
+            ERR_DRAW_CIRCLE_SCREEN,
+    /** Error code: drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen))
+     *              -> radius is negative
+     */
+            ERR_DRAW_CIRCLE_RAD,
     //! Error code: input RenderTraget screen is nullptr in draw function
             ERR_CHAR_OBJ_DRAW_SCREEN,
     //! Error code: input RenderTraget screen is nullptr in draw function with input coordinates
