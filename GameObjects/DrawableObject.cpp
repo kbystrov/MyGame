@@ -28,7 +28,7 @@ int DrawableObject::draw(sf::RenderTarget * screen) const {
     if (sprite_.getTexture()) {
         screen->draw(sprite_);
     } else {
-        err_code = drawCircle(pos_, (size_.x + size_.y) / 4, color_, sf::Color::Transparent, screen);
+        err_code = drawRect(pos_, size_, color_, sf::Color::Transparent, screen);
     }
 
     return err_code;
@@ -49,25 +49,25 @@ int DrawableObject::draw(Vec pos, sf::RenderTarget * screen) const {
         sprite.setPosition (pos.x, pos.y);
         screen->draw (sprite);
     } else {
-        err_code = drawCircle (pos_, (size_.x + size_.y) / 4, color_, sf::Color::Transparent, screen);
+        err_code = drawRect (pos_, size_, color_, sf::Color::Transparent, screen);
     }
 
     return err_code;
 }
 
-int drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen) {
+int drawRect (Vec pos, Vec size, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen) {
 
     if(screen == nullptr){
-        return ERR_DRAW_CIRCLE_SCREEN;
+        return ERR_DRAW_RECT_SCREEN;
     }
 
-    if(radius < 0){
-        return ERR_DRAW_CIRCLE_RAD;
+    if(size < 0){
+        return ERR_DRAW_RECT_SIZE;
     }
 
-    sf::CircleShape circle;
+    sf::RectangleShape circle;
 
-    circle.setRadius (radius);
+    circle.setSize(sf::Vector2f(size.x, size.y));
     circle.setFillColor (fillColor);
     circle.setOutlineColor (outlineColor);
 
@@ -75,7 +75,7 @@ int drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineCol
         circle.setOutlineThickness (DEF_THICKNESS);
     }
 
-    circle.setOrigin (radius, radius);
+    circle.setOrigin (size.x/2, size.y/2);
     circle.setPosition (pos.x, pos.y);
 
     screen->draw (circle);

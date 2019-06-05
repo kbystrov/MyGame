@@ -26,7 +26,7 @@ public:
     virtual int draw (Vec pos, sf::RenderTarget * screen) const;
 };
 
-int drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget* screen);
+int drawRect (Vec pos, Vec size, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget* screen);
 
 
 #endif //MYGAME_DRAWABLEOBJECT_H

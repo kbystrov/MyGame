@@ -26,6 +26,7 @@ int main()
 
     errno = 0;
     DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
+    ERRNO_CHECK;
 
     while (window.isOpen())
     {
