@@ -41,10 +41,12 @@ Vec PhysicalObject::getHitbox() const {
 
 bool PhysicalObject::isCollided(const PhysicalObject& physicalObject) const {
 
-    if( (pos_ - physicalObject.pos_) < hitbox_ ){
+    if( (pos_ - physicalObject.pos_) < (hitbox_ + physicalObject.hitbox_) ){
         return true;
     } else {
         return false;
     }
 
 }
+
+

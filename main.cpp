@@ -6,6 +6,7 @@
 #include "Passenger.h"
  */
 #include "DrawableObject.h"
+#include "PhysicalObject.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */
@@ -27,6 +28,8 @@ int main()
     errno = 0;
     DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
     ERRNO_CHECK;
+
+    errno = 0;
 
     while (window.isOpen())
     {
