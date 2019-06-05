@@ -10,8 +10,12 @@
 enum Errors {
     //! Error code: Unknown error code
             ERR_CODE_UNKNOWN = -1,
+    //! Error code: GameObject::setSize(Vec size) -> size is a Vector with negative coordinates
+            ERR_GAMEOBJ_SETSIZE = 1,
+    //! Error code: GameObject::GameObject(Vec pos, Vec size) -> size is a Vector with negative coordinates
+            ERR_GAMEOBJ_CTR_SIZE,
     //! Error code: input RenderTraget screen is nullptr in draw function
-            ERR_CHAR_OBJ_DRAW_SCREEN = 1,
+            ERR_CHAR_OBJ_DRAW_SCREEN,
     //! Error code: input RenderTraget screen is nullptr in draw function with input coordinates
             ERR_CHAR_OBJ_DRAW_POS_SCREEN,
     //! Error code: input RenderTraget screen is nullptr in draw circle function
