@@ -8,8 +8,11 @@
 
 /** @file */
 
+//! @def Default data type for used radius vector in game
+typedef float dataType;
+
 //! @def Default radius vector
-using Vec = RadVec<float>;
+using Vec = RadVec<dataType>;
 //! @def Default object position
 const Vec defPos = Vec(1, 1);
 //! @def Default object size

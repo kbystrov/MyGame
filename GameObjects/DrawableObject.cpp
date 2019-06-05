@@ -13,6 +13,7 @@ DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Spr
     ERRNO_CHECK;
     errno = 0;
     #endif
+
     texture_ = texture;
     sprite_ = sprite;
     color_ = color;

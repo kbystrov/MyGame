@@ -11,7 +11,7 @@ const sf::Color defDrawColor = sf::Color::White;
 //! @def Default thickness for circles
 const int DEF_THICKNESS = 3;
 
-//! @class An superclass for drawable objects
+//! @class A superclass for drawable objects
 class DrawableObject: virtual public GameObject {
 protected:
     sf::Texture * texture_ = nullptr;   ///< @param The pointer to this object texture (is stored under GameEngine)
