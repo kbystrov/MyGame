@@ -24,6 +24,7 @@ int main()
     Passenger * passenger = new Passenger(Vec(500, 500), Vec(), Vec(100, 100), sf::Sprite());
     */
 
+    errno = 0;
     DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
 
     while (window.isOpen())

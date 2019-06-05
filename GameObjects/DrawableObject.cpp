@@ -4,6 +4,10 @@
 /** @file */
 
 DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, sf::Color color) : GameObject(pos, size) {
+    #ifdef GAME_DEBUG
+    ERRNO_CHECK;
+    errno = 0;
+    #endif
     texture_ = texture;
     sprite_ = sprite;
     color_ = color;

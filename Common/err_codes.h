@@ -4,7 +4,9 @@
 
 /** @file */
 
-#define err_tostr(err_code) #err_code
+#define ERR_CHECK if(err_code){ printf("ERROR: %d in LINE: %d in FILE: %s\n", err_code, __LINE__, __FILE__); return err_code;}
+#define ERRNO_CHECK if(errno){ printf("ERROR: %d in LINE: %d in FILE: %s\n", errno, __LINE__, __FILE__); }
+
 
 //!@enum Enumeration of error codes
 enum Errors {
@@ -18,14 +20,18 @@ enum Errors {
             ERR_DRAWOBJ_DRAW_SIMPLE_SCREEN,
     //! Error code: DrawableObject::draw(Vec pos, sf::RenderTarget * screen) -> screen is nullptr
             ERR_DRAWOBJ_DRAW_POS_SCREEN,
-    /** Error code: drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen))
+    /** Error code: drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen)
      *              -> screen is nullptr
      */
             ERR_DRAW_CIRCLE_SCREEN,
-    /** Error code: drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen))
+    /** Error code: drawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget * screen)
      *              -> radius is negative
      */
             ERR_DRAW_CIRCLE_RAD,
+    //! Error code: PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size) -> hitbox is a Vector with negative coordinates
+            ERR_PHYSOBJ_CTR_HITBOX,
+    //! Error code: PhysicalObject::setHitbox(Vec hitbox) -> hitbox is a Vector with negative coordinates
+            ERR_PHYSOBJ_SETHITBOX,
     //! Error code: input RenderTraget screen is nullptr in draw function
             ERR_CHAR_OBJ_DRAW_SCREEN,
     //! Error code: input RenderTraget screen is nullptr in draw function with input coordinates

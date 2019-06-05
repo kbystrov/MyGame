@@ -20,6 +20,20 @@ struct RadVec{
 
     template <typename U>
     RadVec (const sf::Vector2 <U>& vec) : RadVec(vec.x, vec.y) {}
+
+    RadVec operator + (const RadVec <T> vec) { return RadVec( x + vec.x, y + vec.y ); }
+    RadVec operator - (const RadVec <T> vec) { return RadVec( x - vec.x, y - vec.y ); }
+    bool operator > (const T val) { return (x > val || y > val) ? true : false; }
+    bool operator < (const T val) { return (x < val || y < val) ? true : false; }
+    bool operator > (const RadVec <T> vec) { return (x > vec.x && y > vec.y) ? true : false; }
+    bool operator < (const RadVec <T> vec) { return (x < vec.x && y < vec.y) ? true : false; }
+
+    RadVec operator + (const RadVec <T> vec) const { return RadVec( x + vec.x, y + vec.y ); }
+    RadVec operator - (const RadVec <T> vec) const { return RadVec( x - vec.x, y - vec.y ); }
+    bool operator > (const T val) const { return (x > val || y > val) ? true : false; }
+    bool operator < (const T val) const { return (x < val || y < val) ? true : false; }
+    bool operator > (const RadVec <T> vec) const { return (x > vec.x && y > vec.y) ? true : false; }
+    bool operator < (const RadVec <T> vec) const { return (x < vec.x && y < vec.y) ? true : false; }
 };
 
 

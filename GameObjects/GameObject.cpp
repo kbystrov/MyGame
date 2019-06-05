@@ -7,7 +7,7 @@ GameObject::GameObject(Vec pos, Vec size) {
 
     pos_ = pos;
 
-    if(size.x < 0 || size.y < 0){
+    if(size < 0){
         size_ = defSize;
         #ifdef GAME_DEBUG
         errno = ERR_GAMEOBJ_CTR_SIZE;
@@ -29,7 +29,7 @@ Vec GameObject::getPos() const {
 
 int GameObject::setSize(Vec size) {
 
-    if(size.x < 0 || size.y < 0){
+    if(size < 0){
         #ifdef GAME_DEBUG
         return ERR_GAMEOBJ_SETSIZE;
         #else
