@@ -25,8 +25,6 @@ int main()
     */
 
     DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
-    DrawableObject * drawable_2 = new DrawableObject();
-    DrawableObject * drawable_3 = new DrawableObject(Vec(100, 100), Vec(50, 50));
 
     while (window.isOpen())
     {

@@ -3,14 +3,6 @@
 
 /** @file */
 
-/*
-DrawableObject::DrawableObject(sf::Texture * texture, sf::Sprite sprite, sf::Color color) {
-    texture_ = texture;
-    sprite_ = sprite;
-    color_ = color;
-}
-*/
-
 DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, sf::Color color) : GameObject(pos, size) {
     texture_ = texture;
     sprite_ = sprite;
