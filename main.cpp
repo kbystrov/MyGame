@@ -14,7 +14,7 @@ int main()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
-    Player * player = new Player(Vec(50, 50), Vec(), Vec(100, 100), sf::Sprite());
+    Player * player = new Player(Vec(50, 50), Vec(10, 10), Vec(100, 100), sf::Sprite());
 
     TrainInspector * trainInspector = new TrainInspector(Vec(300, 300), Vec(), Vec(100, 100), sf::Sprite());
 
@@ -30,6 +30,7 @@ int main()
         }
 
         window.clear();
+        player->move();
         player->draw(&window);
         trainInspector->draw(&window);
         passenger->draw(&window);

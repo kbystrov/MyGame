@@ -56,7 +56,7 @@ int DrawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineCol
     if(screen == nullptr){
         return ERR_CHAR_OBJ_DRAW_CIRCLE_SCREEN;
     }
-    #endif !GAME_DEBUG
+    #endif // !GAME_DEBUG
 
     sf::CircleShape circle;
 

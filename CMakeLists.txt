@@ -11,7 +11,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra \
 link_directories(/usr/local/lib/)
 
 set(EXECUTABLE_NAME "MyGame")
-add_executable(${EXECUTABLE_NAME} main.cpp Common/err_codes.h CharacterObject/CharacterObject.h Common/RadVec.h CharacterObject/Player.cpp CharacterObject/Player.h CharacterObject/TrainInspector.cpp CharacterObject/TrainInspector.h CharacterObject/CharacterObject.cpp Common/proj_macros.h CharacterObject/Passenger.cpp CharacterObject/Passenger.h)
+add_executable(${EXECUTABLE_NAME} main.cpp Common/err_codes.h CharacterObject/CharacterObject.h Common/RadVec.h CharacterObject/Player.cpp CharacterObject/Player.h CharacterObject/TrainInspector.cpp CharacterObject/TrainInspector.h CharacterObject/CharacterObject.cpp Common/proj_macros.h CharacterObject/Passenger.cpp CharacterObject/Passenger.h GameEngine/GameEngine.cpp GameEngine/GameEngine.h CharacterObject/characters.h)
 
 TARGET_LINK_LIBRARIES(${EXECUTABLE_NAME} -lsfml-graphics -lsfml-window -lsfml-system)
 

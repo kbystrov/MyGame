@@ -3,6 +3,7 @@
 
 #include "RadVec.h"
 #include "err_codes.h"
+#include "proj_macros.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */
@@ -26,7 +27,6 @@ protected:
     Vec size_; ///< @param character's size radius vector (x,y,...)
     sf::Sprite sprite_; ///< @param character's sprite
     sf::Color color_;   ///< @param color in case there is no sprite for character
-    //sf::CircleShape shape_; ///< @param Временная заглушка для теста функционала пока spritesheets нет
 
 public:
     CharacterObject(): CharacterObject(Vec(), Vec(), Vec(), sf::Sprite(), charColor) {}
@@ -37,6 +37,8 @@ public:
     virtual int draw (sf::RenderTarget * screen) const;
     virtual int draw (Vec pos, sf::RenderTarget * screen) const;
     virtual int move () = 0;
+
+    Vec getPos();
 };
 
 int DrawCircle (Vec pos, float radius, sf::Color fillColor, sf::Color outlineColor, sf::RenderTarget* screen);
