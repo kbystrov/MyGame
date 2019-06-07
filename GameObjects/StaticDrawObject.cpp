@@ -11,8 +11,12 @@ StaticDrawObject::StaticDrawObject(Vec pos, Vec size, Vec hitbox, sf::Texture * 
         #endif // !CTR_DEBUG
         }
 
-int StaticDrawObject::onCollision() {
-    printf("Is is just test of onCollision function!");
-    return 0;
+StaticDrawObject::~StaticDrawObject() {
+        texture_ = nullptr;
 }
 
+
+int StaticDrawObject::onCollision(PhysicalObject &physicalObject) {
+        printf("Collision in StaticObject");
+        return 0;
+}

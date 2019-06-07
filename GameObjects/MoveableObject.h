@@ -14,15 +14,18 @@ class MoveableObject: virtual public GameObject {
 protected:
     Vec v_; ///<@param radius vector of object's current speed
 
-    Vec pos_nxt_; ///<@param radius vector of object's speed counted at next iteration of game engine process
-    Vec v_nxt_; ///<@param radius vector of object's speed counted at next iteration of game engine process
+    Vec pos_tmp_; ///<@param radius vector of object's position at the begining of each step (to prevent collisions)
+    Vec v_tmp_; ///<@param radius vector of object's speed counted at next iteration of game engine process
 public:
     explicit MoveableObject(Vec pos = defPos, Vec size = defSize, Vec v = defSpeed);
 
     virtual ~MoveableObject() override {} ///< todo Спросить Якова про override и virtual
 
-    virtual int countNextParams() = 0;
+    int setSpeed(Vec v);
+    Vec getSpeed() const;
+
     virtual int move() = 0;
+    virtual int updateParams() = 0;
 };
 
 
