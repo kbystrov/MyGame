@@ -10,9 +10,9 @@
 /** @file */
 
 class GameEngine {
-    CharacterObject * allCharsArr_;  ///< @param Array of Characters in Game
+    //CharacterObject * allCharsArr_;  ///< @param Array of Characters in Game
     size_t allCharsCount_;           ///< @param Number of elements in Characters Array
-    Player * player_;                ///< @param Player's pointer
+    //MainPlayer * player_;                ///< @param Player's pointer
     bool isAlarm_;                   ///< @param Flag of that Train Inspectors have started their attempts for arresting Player
 };
 

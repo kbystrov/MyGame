@@ -8,13 +8,11 @@
 /** @file */
 
 //! @class An interface for all static (non-moveable) objects in game (like becnhs, doors, platforms, etc.)
-class StaticDrawObject: public DrawableObject, PhysicalObject {
+class StaticDrawObject: virtual public DrawableObject, virtual public PhysicalObject {
 public:
     explicit StaticDrawObject(Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), sf::Color color = defDrawColor);
 
     virtual ~StaticDrawObject() override;///< todo Спросить Якова про override и virtual
-
-    virtual int onCollision(PhysicalObject& physicalObject) override;
 };
 
 

@@ -4,9 +4,7 @@
 
 /** @file */
 
-#include "CharacterObject.h"
-#include "Player.h"
-#include "Passenger.h"
-#include "TrainInspector.h"
+#include "MainPlayer.h"
+#include "Bench.h"
 
 #endif //MYGAME_CHARACTERS_H

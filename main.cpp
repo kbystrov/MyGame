@@ -9,6 +9,8 @@
 #include "PhysicalObject.h"
 #include "StaticDrawObject.h"
 #include "Bench.h"
+#include "PlayerableObject.h"
+#include "MainPlayer.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */
@@ -32,7 +34,11 @@ int main()
     ERRNO_CHECK;
 
     errno = 0;
-    Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(200, 200), nullptr, sf::Sprite(), sf::Color::Red);
+    Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(51, 51), nullptr, sf::Sprite(), sf::Color::Red);
+    ERRNO_CHECK;
+
+    errno = 0;
+    MainPlayer * player = new MainPlayer(Vec(500,500), Vec(100,100), Vec(51, 51), Vec(4,4), nullptr, sf::Sprite(), sf::Color::Green);
     ERRNO_CHECK;
 
     while (window.isOpen())
@@ -53,6 +59,11 @@ int main()
          */
         drawable->draw(&window);
         bench->draw(&window);
+        player->draw(&window);
+        player->move();
+        if (player->isCollided(*bench)){
+            bench->onCollision(*player);
+        }
         //window.draw(shape);
         window.display();
     }

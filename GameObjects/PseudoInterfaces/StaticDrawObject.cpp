@@ -14,9 +14,3 @@ StaticDrawObject::StaticDrawObject(Vec pos, Vec size, Vec hitbox, sf::Texture * 
 StaticDrawObject::~StaticDrawObject() {
         texture_ = nullptr;
 }
-
-
-int StaticDrawObject::onCollision(PhysicalObject &physicalObject) {
-        printf("Collision in StaticObject");
-        return 0;
-}
