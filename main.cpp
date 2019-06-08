@@ -11,6 +11,7 @@
 #include "Bench.h"
 #include "PlayerableObject.h"
 #include "MainPlayer.h"
+#include "TrainInspector.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */
@@ -27,11 +28,15 @@ int main()
     ERRNO_CHECK;
 
     errno = 0;
-    Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(51, 51), nullptr, sf::Sprite(), sf::Color::Red);
+    Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(51, 51), nullptr, sf::Sprite(), sf::Color::Yellow);
     ERRNO_CHECK;
 
     errno = 0;
-    MainPlayer * player = new MainPlayer(Vec(500,500), Vec(100,100), Vec(51, 51), Vec(4,4), nullptr, sf::Sprite(), sf::Color::Green);
+    MainPlayer * player = new MainPlayer(Vec(500,500), Vec(100,100), Vec(50, 50), Vec(4,4), nullptr, sf::Sprite(), sf::Color::Green);
+    ERRNO_CHECK;
+
+    errno = 0;
+    TrainInspector * inspector = new TrainInspector(player, Vec(800,800), Vec(10,10), Vec(5, 5), Vec(1,1));
     ERRNO_CHECK;
 
     while (window.isOpen())
@@ -48,11 +53,24 @@ int main()
         drawable->draw(&window);
         bench->draw(&window);
         player->draw(&window);
+        inspector->draw(&window);
 
         player->move();
+        inspector->move();
 
         if (player->isCollided(*bench)){
             bench->onCollision(*player);
+            player->onCollision(*bench);
+        }
+
+        if (player->isCollided(*inspector)){
+            inspector->onCollision(*player);
+            player->onCollision(*inspector);
+        }
+
+        if (inspector->isCollided(*bench)){
+            bench->onCollision(*inspector);
+            inspector->onCollision(*bench);
         }
 
         window.display();

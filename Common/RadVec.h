@@ -1,6 +1,7 @@
 #ifndef MYGAME_RADVEC_H
 #define MYGAME_RADVEC_H
 
+#include <math.h>
 #include <SFML/Graphics.hpp>
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -35,6 +36,9 @@ struct RadVec{
     bool operator > (const RadVec <T> vec) const { return (x > vec.x && y > vec.y) ? true : false; }
     bool operator < (const RadVec <T> vec) const { return (x < vec.x && y < vec.y) ? true : false; }
 };
+
+template <typename U>
+RadVec<U> absVec(const RadVec<U> vec) { return RadVec<U>( fabs(vec.x), fabs(vec.y) ); }
 
 
 #endif //MYGAME_RADVEC_H
