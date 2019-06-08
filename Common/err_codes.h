@@ -32,12 +32,8 @@ enum Errors {
             ERR_PHYSOBJ_CTR_HITBOX,
     //! Error code: PhysicalObject::setHitbox(Vec hitbox) -> hitbox is a Vector with negative coordinates
             ERR_PHYSOBJ_SETHITBOX,
-    //! Error code: input RenderTraget screen is nullptr in draw function
-            ERR_CHAR_OBJ_DRAW_SCREEN,
-    //! Error code: input RenderTraget screen is nullptr in draw function with input coordinates
-            ERR_CHAR_OBJ_DRAW_POS_SCREEN,
-    //! Error code: input RenderTraget screen is nullptr in draw circle function
-            ERR_CHAR_OBJ_DRAW_CIRCLE_SCREEN,
+    //! Error code: WithTargetObject::findPath() -> Object's target is nullptr
+            ERR_WTHTRGT_FNDPTH_TRGT,
 };
 
 #endif //VECTOR_ERR_CODES_H

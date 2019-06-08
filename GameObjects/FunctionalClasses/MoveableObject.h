@@ -21,7 +21,7 @@ public:
 
     virtual ~MoveableObject() override {} ///< todo Спросить Якова про override и virtual
 
-    int setSpeed(Vec v);
+    virtual int setSpeed(Vec v);
     Vec getSpeed() const;
 
     virtual int move() = 0;

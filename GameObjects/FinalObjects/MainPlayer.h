@@ -14,7 +14,7 @@ public:
 
     int move() override;
     int updateParams() override;
-    int onCollision(GameObject &physicalObject) override;
+    int onCollision(GameObject& physicalObject) override;
 };
 
 

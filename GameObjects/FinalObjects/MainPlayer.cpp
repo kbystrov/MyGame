@@ -8,6 +8,11 @@ MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture *textur
         DrawableObject(pos, size, texture, sprite, color), PhysicalObject(hitbox, pos, size),
         MoveableObject(pos,size, v), GameObject(pos, size)
         {
+        #ifdef GAME_DEBUG
+        ERRNO_CHECK;
+        errno = 0;
+        #endif
+
         #ifdef CTR_DEBUG
         printf("MainPlayer ctr!\n");
         #endif // !CTR_DEBUG
