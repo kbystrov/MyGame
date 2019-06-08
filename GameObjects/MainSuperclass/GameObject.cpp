@@ -49,3 +49,20 @@ int GameObject::setSize(Vec size) {
 Vec GameObject::getSize() const {
     return size_;
 }
+
+int GameObject::setObjType(gameType obj_type) {
+
+    if(obj_type > GAME_TYPES_TOTAL || obj_type < type_unknown_e || !obj_type){
+        return ERR_GAMEOBJ_SETOBJTYPE;
+    }
+
+    obj_type_ = obj_type;
+
+    return 0;
+}
+
+gameType GameObject::getObjType() const {
+    return obj_type_;
+}
+
+

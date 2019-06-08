@@ -13,8 +13,15 @@ EnemyObject::EnemyObject(GameObject * trgt, Vec pos, Vec size, Vec hitbox, Vec v
                             errno = 0;
                             #endif
 
+                            errno = setObjType(type_enemy_obj_e);
+
+                            #ifdef GAME_DEBUG
+                            ERRNO_CHECK;
+                            errno = 0;
+                            #endif
+
                             #ifdef CTR_DEBUG
-                            printf("PlayerableObject ctr!\n");
+                            printf("EnemyObject ctr!\n");
                             #endif // !CTR_DEBUG
 
                             isAttacking_ = attackState;

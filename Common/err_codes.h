@@ -34,6 +34,8 @@ enum Errors {
             ERR_PHYSOBJ_SETHITBOX,
     //! Error code: WithTargetObject::findPath() -> Object's target is nullptr
             ERR_WTHTRGT_FNDPTH_TRGT,
+    //! Error code: GameObject::setObjType(gameType obj_type) -> obj_type has non-appropriate value
+            ERR_GAMEOBJ_SETOBJTYPE
 };
 
 #endif //VECTOR_ERR_CODES_H

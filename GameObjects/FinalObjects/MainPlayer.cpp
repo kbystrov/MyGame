@@ -13,6 +13,13 @@ MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture *textur
         errno = 0;
         #endif
 
+        errno = setObjType(type_main_player_e);
+
+        #ifdef GAME_DEBUG
+        ERRNO_CHECK;
+        errno = 0;
+        #endif
+
         #ifdef CTR_DEBUG
         printf("MainPlayer ctr!\n\n");
         #endif // !CTR_DEBUG

@@ -12,6 +12,13 @@ Bench::Bench(Vec pos, Vec size, Vec hitbox, sf::Texture *texture, sf::Sprite spr
         errno = 0;
         #endif
 
+        errno = setObjType(type_bench_e);
+
+        #ifdef GAME_DEBUG
+        ERRNO_CHECK;
+        errno = 0;
+        #endif
+
         #ifdef CTR_DEBUG
         printf("Bench ctr!\n\n");
         #endif // !CTR_DEBUG

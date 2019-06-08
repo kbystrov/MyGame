@@ -4,6 +4,19 @@
 /** @file */
 
 WithTargetObject::WithTargetObject(Vec pos, Vec size, Vec v, GameObject * trgt): MoveableObject(pos, size, v), GameObject(pos, size) {
+
+    #ifdef GAME_DEBUG
+    ERRNO_CHECK;
+    errno = 0;
+    #endif
+
+    errno = setObjType(type_with_target_obj_e);
+
+    #ifdef GAME_DEBUG
+    ERRNO_CHECK;
+    errno = 0;
+    #endif
+
     trgt_ = trgt;
 
     #ifdef CTR_DEBUG

@@ -21,13 +21,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode(900, 900), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
-    /*
-    Player * player = new Player(Vec(50, 50), Vec(10, 10), Vec(100, 100), sf::Sprite());
-
-    TrainInspector * trainInspector = new TrainInspector(Vec(300, 300), Vec(), Vec(100, 100), sf::Sprite());
-
-    Passenger * passenger = new Passenger(Vec(500, 500), Vec(), Vec(100, 100), sf::Sprite());
-    */
 
     errno = 0;
     DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
@@ -51,20 +44,17 @@ int main()
         }
 
         window.clear();
-        /*
-        player->move();
-        player->draw(&window);
-        trainInspector->draw(&window);
-        passenger->draw(&window);
-         */
+
         drawable->draw(&window);
         bench->draw(&window);
         player->draw(&window);
+
         player->move();
+
         if (player->isCollided(*bench)){
             bench->onCollision(*player);
         }
-        //window.draw(shape);
+
         window.display();
     }
 

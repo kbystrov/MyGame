@@ -11,6 +11,13 @@ StaticDrawObject::StaticDrawObject(Vec pos, Vec size, Vec hitbox, sf::Texture * 
         errno = 0;
         #endif
 
+        errno = setObjType(type_static_draw_obj_e);
+
+        #ifdef GAME_DEBUG
+        ERRNO_CHECK;
+        errno = 0;
+        #endif
+
         #ifdef CTR_DEBUG
         printf("StaticObject ctr!\n");
         #endif // !CTR_DEBUG

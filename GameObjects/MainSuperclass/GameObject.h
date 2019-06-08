@@ -4,6 +4,7 @@
 #include "RadVec.h"
 #include "err_codes.h"
 #include "proj_macros.h"
+#include "game_obj_types.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */
@@ -21,6 +22,7 @@ const Vec defSize = Vec(1, 1);
 //!@class Base class for all game objects
 class GameObject {
 protected:
+    gameType obj_type_ = type_game_obj_e;
     Vec pos_;  ///< @param character's coordinates radius vector (x,y,...)
     Vec size_; ///< @param character's size radius vector (x,y,...)
 
@@ -33,6 +35,8 @@ public:
     Vec getPos() const;
     int setSize(Vec size);
     Vec getSize() const;
+    gameType getObjType() const;
+    int setObjType(gameType obj_type);
 };
 
 
