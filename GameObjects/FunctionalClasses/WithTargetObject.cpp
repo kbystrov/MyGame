@@ -23,3 +23,12 @@ int WithTargetObject::findPath() {
 
     return 0;
 }
+
+int WithTargetObject::setTarget(GameObject * trgt) {
+    trgt_ = trgt;
+    return 0;
+}
+
+GameObject * WithTargetObject::getTarget() {
+    return trgt_;
+}

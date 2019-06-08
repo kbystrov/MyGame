@@ -6,7 +6,7 @@
 GameObject::GameObject(Vec pos, Vec size) {
 
     #ifdef CTR_DEBUG
-    printf("GameObject ctr!\n");
+    printf("\nGameObject ctr!\n");
     #endif // !CTR_DEBUG
 
     pos_ = pos;

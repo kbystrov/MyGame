@@ -13,7 +13,7 @@ Bench::Bench(Vec pos, Vec size, Vec hitbox, sf::Texture *texture, sf::Sprite spr
         #endif
 
         #ifdef CTR_DEBUG
-        printf("Bench ctr!\n");
+        printf("Bench ctr!\n\n");
         #endif // !CTR_DEBUG
         }
 

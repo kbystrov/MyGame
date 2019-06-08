@@ -19,6 +19,9 @@ public:
     virtual int findNewTarget() = 0;
     int findPath();
     virtual int flashTarget() = 0;
+
+    int setTarget(GameObject * trgt);
+    GameObject * getTarget();
 };
 
 #endif //MYGAME_WITHTARGETOBJECT_H

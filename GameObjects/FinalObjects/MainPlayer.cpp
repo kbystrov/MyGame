@@ -14,7 +14,7 @@ MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture *textur
         #endif
 
         #ifdef CTR_DEBUG
-        printf("MainPlayer ctr!\n");
+        printf("MainPlayer ctr!\n\n");
         #endif // !CTR_DEBUG
         }
 
