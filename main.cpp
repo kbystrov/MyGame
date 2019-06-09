@@ -32,66 +32,10 @@ int main()
     }
     ERR_CHECK(logfile, 1);
 
-    gameEngine->runGame();
-    /*
-    sf::RenderWindow window(sf::VideoMode(900, 900), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    err_code = gameEngine->runGame();
+    ERR_CHECK(logfile, 0);
 
-    errno = 0;
-    DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
-    ERRNO_CHECK(logfile);
-
-    errno = 0;
-    Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(51, 51), nullptr, sf::Sprite(), sf::Color::Yellow);
-    ERRNO_CHECK(logfile);
-
-    errno = 0;
-    MainPlayer * player = new MainPlayer(Vec(500,500), Vec(10,10), Vec(5, 5), Vec(4,4), nullptr, sf::Sprite(), sf::Color::Green);
-    ERRNO_CHECK(logfile);
-
-    errno = 0;
-    TrainInspector * inspector = new TrainInspector(player, Vec(800,800), Vec(100,100), Vec(50, 50), Vec(3,3));
-    ERRNO_CHECK(logfile);
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-
-        drawable->draw(&window);
-        bench->draw(&window);
-        player->draw(&window);
-        inspector->draw(&window);
-
-        player->move();
-        inspector->move();
-
-        if (player->isCollided(*bench)){
-            bench->onCollision(*player);
-            player->onCollision(*bench);
-        }
-
-        if (player->isCollided(*inspector)){
-            inspector->onCollision(*player);
-            player->onCollision(*inspector);
-        }
-
-        if (inspector->isCollided(*bench)){
-            bench->onCollision(*inspector);
-            inspector->onCollision(*bench);
-        }
-
-        window.display();
-    }
-    */
     delete gameEngine;
 
-    return 0;
+    return err_code;
 }

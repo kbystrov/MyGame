@@ -73,31 +73,87 @@ int GameEngine::initGameEngineParams() {
 
 int GameEngine::createWindow() {
 
-    window_ = new sf::RenderWindow(sf::VideoMode(900, 900), "SFML works!");
-    if(window_ == nullptr){
-        return ERR_GMENG_CRTWIN_WIN;
-    }
-    windsCount_ = 1;
+    if(fileIsOpened_) {
 
-    window_->setVerticalSyncEnabled (true);
-    window_->setFramerateLimit (25);
+        char tmp[TMP_STR_SIZE] = {};
+        uint32_t win_num = defWinNum;
+        uint32_t win_w = defWinSize;
+        uint32_t win_h = defWinSize;
+        char title[TMP_STR_SIZE] = {};
+        bool vet_sync_flag = false;
+        uint32_t frame_rt_lim = defFrameRateLim;
+
+
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%d", &win_num);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%d",  &win_w);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%d",  &win_h);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%s",  title);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%d",  &vet_sync_flag);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%d",  &frame_rt_lim);
+        fscanf(configFile_, "%s", tmp);
+
+        window_ = new sf::RenderWindow(sf::VideoMode(win_w, win_h), title);
+        if (window_ == nullptr) {
+            return ERR_GMENG_CRTWIN_WIN;
+        }
+        windsCount_ = win_num;
+
+        window_->setVerticalSyncEnabled(vet_sync_flag);
+        window_->setFramerateLimit(frame_rt_lim);
+
+    } else {
+        return ERR_GMENG_CRTWIN_FILECLS;
+    }
 
     return 0;
 }
 
 int GameEngine::createMusicTracks() {
 
-    music_ = new sf::Music();
-    if(music_ == nullptr){
-        return ERR_GMENG_CRTMUS_MUS;
-    }
+    if(fileIsOpened_){
 
-    if (!music_->openFromFile(defMusic)){
-        fprintf(logfile, "No music for game was found\n");
-        return ERR_GMENG_CRTMUS_MUSPATH;
-    }
+        char tmp[TMP_STR_SIZE] = {};
+        uint32_t mus_num = defWinNum;
+        char mus_path[TMP_STR_SIZE] = {};
+        bool set_loop = true;
 
-    music_->setLoop (true);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%d", &mus_num);
+
+        songsCount_ = mus_num;
+        if (!songsCount_) return 0;
+
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%s", mus_path);
+        fscanf(configFile_, "%s", tmp);
+        fscanf(configFile_, "%d", &set_loop);
+        fscanf(configFile_, "%s", tmp);
+
+        music_ = new sf::Music();
+        if(music_ == nullptr){
+            return ERR_GMENG_CRTMUS_MUS;
+        }
+
+        if (!music_->openFromFile(mus_path)){
+            fprintf(logfile, "No music for game was found\n");
+            return ERR_GMENG_CRTMUS_MUSPATH;
+        }
+
+        music_->setLoop (set_loop);
+
+    } else {
+        return ERR_GMENG_CRTMUS_FILECLS;
+    }
 
     return 0;
 }

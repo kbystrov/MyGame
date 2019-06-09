@@ -5,6 +5,7 @@
 #include "err_codes.h"
 #include "proj_macros.h"
 #include "game_obj_types.h"
+#include "game_def_constants.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */

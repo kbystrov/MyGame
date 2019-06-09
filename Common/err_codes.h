@@ -49,6 +49,10 @@ enum Errors {
             ERR_GMENG_CRTMUS_MUS,
     //! Error code: GameEngine::createMusicTracks() -> no music was found in resources directory
             ERR_GMENG_CRTMUS_MUSPATH,
+    //! Error code: GameEngine::createWindow() -> config file is not opened
+            ERR_GMENG_CRTWIN_FILECLS,
+    //! Error code: GameEngine::createMusicTracks() -> config file is not opened
+            ERR_GMENG_CRTMUS_FILECLS,
 };
 
 #endif //VECTOR_ERR_CODES_H

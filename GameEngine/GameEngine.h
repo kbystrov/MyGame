@@ -1,6 +1,7 @@
 #ifndef MYGAME_GAMEENGINE_H
 #define MYGAME_GAMEENGINE_H
 
+#include <stdio.h>
 #include <SFML/Audio.hpp>
 #include "game_def_constants.h"
 #include "RadVec.h"
