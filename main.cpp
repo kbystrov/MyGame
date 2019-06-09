@@ -30,11 +30,10 @@ int main()
                         "Please try to add this file to required directory or give alternative path to config file\n",
                         defConfigName);
     }
-    ERR_CHECK(logfile);
+    ERR_CHECK(logfile, 1);
 
-    delete gameEngine;
-
-
+    gameEngine->runGame();
+    /*
     sf::RenderWindow window(sf::VideoMode(900, 900), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
@@ -91,6 +90,8 @@ int main()
 
         window.display();
     }
+    */
+    delete gameEngine;
 
     return 0;
 }

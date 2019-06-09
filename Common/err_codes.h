@@ -4,7 +4,9 @@
 
 /** @file */
 
-#define ERR_CHECK(logfile) if(err_code){ fprintf( (logfile == nullptr) ? stderr : logfile, "ERROR: %d in LINE: %d in FILE: %s\n", err_code, __LINE__, __FILE__); return err_code;}
+#define RETERROR(flg, err_code) if(flg){ return err_code;};
+
+#define ERR_CHECK(logfile, retflg) if(err_code){ fprintf( (logfile == nullptr) ? stderr : logfile, "ERROR: %d in LINE: %d in FILE: %s\n", err_code, __LINE__, __FILE__); RETERROR(retflg, err_code) }
 #define ERRNO_CHECK(logfile) if(errno) { fprintf( (logfile == nullptr) ? stderr : logfile, "ERROR: %d in LINE: %d in FILE: %s\n", errno, __LINE__, __FILE__);}
 
 //!@enum Enumeration of error codes
@@ -41,6 +43,12 @@ enum Errors {
             ERR_GMENG_OPNCNFG_INITSTATE,
     //! Error code: GameEngine::openConfigFile() -> error during opening config file
             ERR_GMENG_OPNCNFG_FILE,
+    //! Error code: GameEngine::createWindow() -> error during allocating memory for window
+            ERR_GMENG_CRTWIN_WIN,
+    //! Error code: GameEngine::createMusicTracks() -> error during allocating memory for music
+            ERR_GMENG_CRTMUS_MUS,
+    //! Error code: GameEngine::createMusicTracks() -> no music was found in resources directory
+            ERR_GMENG_CRTMUS_MUSPATH,
 };
 
 #endif //VECTOR_ERR_CODES_H

@@ -2,6 +2,7 @@
 #define MYGAME_GAMEENGINE_H
 
 #include <SFML/Audio.hpp>
+#include "game_def_constants.h"
 #include "RadVec.h"
 #include "err_codes.h"
 #include "proj_macros.h"
@@ -10,9 +11,6 @@
 
 /** @file */
 
-//! @def Default config file for current level
-const char * const defConfigName = "configs/config.ini";
-
 //! @class Class for processing all game logic with objects, sounds, textures, etc.
 class GameEngine {
 private:
@@ -20,12 +18,12 @@ private:
     FILE * configFile_ = nullptr;              ///< @param Config file to read all levels's params
     bool fileIsOpened_ = false;                ///< @param Flag of config file state (is opened or not)
 
-    sf::RenderWindow * winodw_ = nullptr;     ///< @param Array of all windows used in game
+    sf::RenderWindow * window_ = nullptr;     ///< @param Array of all windows used in game
     size_t windsCount_ = 0;                   ///< @param Number of windows used in game
     sf::Music * music_ = nullptr;             ///< @param Array of all audio compositions used in game
-    size_t songsCount = 0;                    ///< @param Number of audio compositions used in game
+    size_t songsCount_ = 0;                    ///< @param Number of audio compositions used in game
     sf::Texture * texture_ = nullptr;         ///< @param Array of all textures used in game
-    size_t textureCount = 0;                  ///< @param Number of textures used in game
+    size_t textureCount_ = 0;                  ///< @param Number of textures used in game
 
     GameObject * allObjs_ = nullptr;          ///< @param Array of all objetcs in Game
     size_t allObjsCount_ = 0;                 ///< @param Number of elements in Game Objects Array
