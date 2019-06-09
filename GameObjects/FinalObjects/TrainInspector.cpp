@@ -11,14 +11,14 @@ TrainInspector::TrainInspector(GameObject *trgt, Vec pos, Vec size, Vec hitbox, 
                                DrawableObject(pos, size, texture, sprite, color), GameObject(pos, size)
                                {
                                 #ifdef GAME_DEBUG
-                                ERRNO_CHECK;
+                                ERRNO_CHECK(logfile);
                                 errno = 0;
                                 #endif
 
                                 errno = setObjType(type_train_inspector_e);
 
                                 #ifdef GAME_DEBUG
-                                ERRNO_CHECK;
+                                ERRNO_CHECK(logfile);
                                 errno = 0;
                                 #endif
 

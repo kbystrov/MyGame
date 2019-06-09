@@ -7,14 +7,14 @@ StaticDrawObject::StaticDrawObject(Vec pos, Vec size, Vec hitbox, sf::Texture * 
         PhysicalObject(hitbox, pos, size), DrawableObject(pos, size, texture, sprite, color), GameObject(pos, size)
         {
         #ifdef GAME_DEBUG
-        ERRNO_CHECK;
+        ERRNO_CHECK(logfile);
         errno = 0;
         #endif
 
         errno = setObjType(type_static_draw_obj_e);
 
         #ifdef GAME_DEBUG
-        ERRNO_CHECK;
+        ERRNO_CHECK(logfile);
         errno = 0;
         #endif
 

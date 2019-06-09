@@ -4,9 +4,8 @@
 
 /** @file */
 
-#define ERR_CHECK if(err_code){ printf("ERROR: %d in LINE: %d in FILE: %s\n", err_code, __LINE__, __FILE__); return err_code;}
-#define ERRNO_CHECK if(errno){ printf("ERROR: %d in LINE: %d in FILE: %s\n", errno, __LINE__, __FILE__); }
-
+#define ERR_CHECK(logfile) if(err_code){ fprintf( (logfile == nullptr) ? stderr : logfile, "ERROR: %d in LINE: %d in FILE: %s\n", err_code, __LINE__, __FILE__); return err_code;}
+#define ERRNO_CHECK(logfile) if(errno) { fprintf( (logfile == nullptr) ? stderr : logfile, "ERROR: %d in LINE: %d in FILE: %s\n", errno, __LINE__, __FILE__);}
 
 //!@enum Enumeration of error codes
 enum Errors {
@@ -35,7 +34,13 @@ enum Errors {
     //! Error code: WithTargetObject::findPath() -> Object's target is nullptr
             ERR_WTHTRGT_FNDPTH_TRGT,
     //! Error code: GameObject::setObjType(gameType obj_type) -> obj_type has non-appropriate value
-            ERR_GAMEOBJ_SETOBJTYPE
+            ERR_GAMEOBJ_SETOBJTYPE,
+    //! Error code: GameEngine::GameEngine(const char * configFileName) -> configFileName is nullptr
+            ERR_GMENG_CRT_CONFNAME,
+    //! Error code: GameEngine::openConfigFile() -> strange Game Engine params before trying to open config file
+            ERR_GMENG_OPNCNFG_INITSTATE,
+    //! Error code: GameEngine::openConfigFile() -> error during opening config file
+            ERR_GMENG_OPNCNFG_FILE,
 };
 
 #endif //VECTOR_ERR_CODES_H

@@ -10,14 +10,14 @@ PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size): GameObject(pos, s
     #endif // !CTR_DEBUG
 
     #ifdef GAME_DEBUG
-    ERRNO_CHECK;
+    ERRNO_CHECK(logfile);
     errno = 0;
     #endif
 
     errno = setObjType(type_physical_obj_e);
 
     #ifdef GAME_DEBUG
-    ERRNO_CHECK;
+    ERRNO_CHECK(logfile);
     errno = 0;
     #endif
 

@@ -9,14 +9,14 @@ MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture *textur
         MoveableObject(pos,size, v), GameObject(pos, size)
         {
         #ifdef GAME_DEBUG
-        ERRNO_CHECK;
+        ERRNO_CHECK(logfile);
         errno = 0;
         #endif
 
         errno = setObjType(type_main_player_e);
 
         #ifdef GAME_DEBUG
-        ERRNO_CHECK;
+        ERRNO_CHECK(logfile);
         errno = 0;
         #endif
 

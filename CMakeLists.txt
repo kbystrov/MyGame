@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra \
 -I${PROJECT_SOURCE_DIR}/Common/ \
+-I${PROJECT_SOURCE_DIR}/GameEngine \
 -I${PROJECT_SOURCE_DIR}/GameObjects/FinalObjects \
 -I${PROJECT_SOURCE_DIR}/GameObjects/FunctionalClasses \
 -I${PROJECT_SOURCE_DIR}/GameObjects/MainSuperclass \

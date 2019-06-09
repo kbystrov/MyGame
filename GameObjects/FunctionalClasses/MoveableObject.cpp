@@ -6,14 +6,14 @@
 MoveableObject::MoveableObject(Vec pos, Vec size, Vec v): GameObject(pos, size) {
 
     #ifdef GAME_DEBUG
-    ERRNO_CHECK;
+    ERRNO_CHECK(logfile);
     errno = 0;
     #endif
 
     errno = setObjType(type_moveable_obj_e);
 
     #ifdef GAME_DEBUG
-    ERRNO_CHECK;
+    ERRNO_CHECK(logfile);
     errno = 0;
     #endif
 

@@ -8,14 +8,14 @@ Bench::Bench(Vec pos, Vec size, Vec hitbox, sf::Texture *texture, sf::Sprite spr
         DrawableObject(pos, size, texture, sprite, color), GameObject(pos, size)
         {
         #ifdef GAME_DEBUG
-        ERRNO_CHECK;
+        ERRNO_CHECK(logfile);
         errno = 0;
         #endif
 
         errno = setObjType(type_bench_e);
 
         #ifdef GAME_DEBUG
-        ERRNO_CHECK;
+        ERRNO_CHECK(logfile);
         errno = 0;
         #endif
 
