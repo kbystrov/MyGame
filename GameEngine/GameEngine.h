@@ -2,6 +2,7 @@
 #define MYGAME_GAMEENGINE_H
 
 #include <stdio.h>
+#include <string.h>
 #include <SFML/Audio.hpp>
 #include "game_def_constants.h"
 #include "RadVec.h"
@@ -39,13 +40,16 @@ public:
 
     //! A group of methods for Game Engine initialization with parameters from config file (the predefined format of config file is required!)
     int openConfigFile();
-
+    int closeConfigFile();
     int initGameEngineParams();
-
+    int parseConfig();
+    int parseConfigWindows();
+    int parseConfigMusic();
+    int parseConfigObjects();
     int createWindow();
+    int createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim);
     int createMusicTracks();
     int createTextures();
-
     int genGameObjs();
     //! A group of methods for game processing
     int runGame();

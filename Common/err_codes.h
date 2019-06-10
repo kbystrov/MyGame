@@ -53,6 +53,8 @@ enum Errors {
             ERR_GMENG_CRTWIN_FILECLS,
     //! Error code: GameEngine::createMusicTracks() -> config file is not opened
             ERR_GMENG_CRTMUS_FILECLS,
+    //! Error code: GameEngine::initGameEngineParams() -> config file is opened and nullptr
+            ERR_GMENG_INITPARAM_CONFFILE,
 };
 
 #endif //VECTOR_ERR_CODES_H
