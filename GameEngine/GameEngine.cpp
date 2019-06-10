@@ -322,17 +322,8 @@ int GameEngine::parseObjs(gameType obj_type) {
                 strcpy(texture_path, NO_TEXTURE_SYMBOLS);
             }
 
-            if( !strcmp(texture_path, NO_TEXTURE_SYMBOLS) ){
-                texture = nullptr;
-            } else {
-                texture = new sf::Texture();
-                if (!texture->loadFromFile (texture_path)){
-                    delete texture;
-                    texture = nullptr;
-                } else {
-                    texture->setSmooth(defTextureSmooth);
-                }
-            }
+            err_code = createTexture(texture_path, &texture);
+            ERR_CHECK(logfile, 1);
 
             err_code = genGameObjs(obj_type, Vec(size_x, size_y), Vec(hitbox_x, hitbox_y), texture, Vec(v_x, v_y) );
             ERR_CHECK(logfile, 1);
@@ -384,20 +375,88 @@ int GameEngine::createMusicTracks(uint32_t mus_num, const char * musPath, bool s
     return 0;
 }
 
-int GameEngine::createTextures() {
+int GameEngine::createTexture(const char * texture_path, sf::Texture ** texture_ptr) {
+
+    if(texture_path == nullptr){
+        return ERR_GMENG_CRTTEX_PATH;
+    }
+
+    if(texture_ptr == nullptr){
+        return ERR_GMENG_CRTTEX_PTR;
+    }
+
+    sf::Texture * texture = nullptr;
+
+    if( strcmp(texture_path, NO_TEXTURE_SYMBOLS) ) {
+        texture = new sf::Texture();
+        if (!texture->loadFromFile (texture_path)){
+            delete texture;
+            texture = nullptr;
+        } else {
+            textureCount_++;
+            texture->setSmooth(defTextureSmooth);
+        }
+    }
+
+    *texture_ptr = texture;
+
     return 0;
 }
 
 int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture * texture, Vec v) {
 
+    static size_t obj_count = 0;
+    static bool allocForObjArrayRequired = true;
+
+    if(allocForObjArrayRequired){
+        allObjs_ = (GameObject **) malloc(allObjsCount_ * sizeof(GameObject *) );
+        if(!allObjs_){
+            return ERR_GMENG_GENGMOBJ_OBJARRMLC;
+        }
+        allocForObjArrayRequired = false;
+    }
+
     switch(obj_type){
         case type_playable_obj_e:
+            {
+                MainPlayer * player = new MainPlayer(Vec(500, 500), size, hitbox, v, texture,
+                                                    (texture) ? sf::Sprite(*texture) : sf::Sprite());
+                if (player) {
+                    player_ = player;
+                } else {
+                    return ERR_GMENG_GENGMOBJ_PLAYER;
+                }
+
+                allObjs_[obj_count++] =  player;
+            }
             break;
         case type_enemy_obj_e:
+            {
+                for(size_t i = 0; i < enemyNum_; i++){
+                    TrainInspector * trainInspector = new TrainInspector(player_, Vec(800, 800), size, hitbox, v, texture,
+                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite());
+                    if (!trainInspector) {
+                        return ERR_GMENG_GENGMOBJ_ENEMY;
+                    }
+
+                    allObjs_[obj_count++] =  trainInspector;
+                }
+            }
             break;
-        case type_moveable_obj_e:
+        case type_moveable_obj_e: //< todo Добавить потом генерацию пассажиров (когда добавишь класс)
             break;
         case type_static_draw_obj_e:
+            {
+                for(size_t i = 0; i < staticObjNum_; i++){
+                    Bench * bench = new Bench(Vec(300, 300), size, hitbox, texture,
+                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite());
+                    if (!bench) {
+                        return ERR_GMENG_GENGMOBJ_STATICOBJ;
+                    }
+
+                    allObjs_[obj_count++] =  bench;
+                }
+            }
             break;
         default:
             break;
@@ -416,17 +475,17 @@ int GameEngine::runGame() {
     DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
     ERRNO_CHECK(logfile);
 
-    errno = 0;
-    Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(51, 51), nullptr, sf::Sprite(), sf::Color::Yellow);
-    ERRNO_CHECK(logfile);
-
-    errno = 0;
-    MainPlayer * player = new MainPlayer(Vec(500,500), Vec(10,10), Vec(5, 5), Vec(4,4), nullptr, sf::Sprite(), sf::Color::Green);
-    ERRNO_CHECK(logfile);
-
-    errno = 0;
-    TrainInspector * inspector = new TrainInspector(player, Vec(800,800), Vec(100,100), Vec(50, 50), Vec(3,3));
-    ERRNO_CHECK(logfile);
+    //errno = 0;
+    //Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(51, 51), nullptr, sf::Sprite(), sf::Color::Yellow);
+    //ERRNO_CHECK(logfile);
+    //
+    //errno = 0;
+    //MainPlayer * player = new MainPlayer(Vec(500,500), Vec(10,10), Vec(5, 5), Vec(4,4), nullptr, sf::Sprite(), sf::Color::Green);
+    //ERRNO_CHECK(logfile);
+    //
+    //errno = 0;
+    //TrainInspector * inspector = new TrainInspector(player, Vec(800,800), Vec(100,100), Vec(50, 50), Vec(3,3));
+    //ERRNO_CHECK(logfile);
 
     while (window_->isOpen())
     {
@@ -437,27 +496,57 @@ int GameEngine::runGame() {
         window_->clear();
 
         drawable->draw(window_);
-        bench->draw(window_);
-        player->draw(window_);
-        inspector->draw(window_);
 
-        player->move();
-        inspector->move();
+        for(size_t i = 0; i < allObjsCount_; i++){
 
-        if (player->isCollided(*bench)){
-            bench->onCollision(*player);
-            player->onCollision(*bench);
+            gameType obj_type = allObjs_[i]->getObjType();
+
+            switch(obj_type){
+                case type_playable_obj_e:
+                    break;
+                case type_enemy_obj_e:
+                    break;
+                case type_moveable_obj_e:
+                    break;
+                case type_static_draw_obj_e:
+                    break;
+            }
+
+            /*
+            allObjs_[i]->move(window_);
+            allObjs_[i]->draw(window_);
+
+            for(size_t j = i + 1; j < allObjsCount_; j++){
+                if(allObjs_[i]->isCollided(allObjs_[j])){
+                    allObjs_[i]->onCollision(allObjs_[j]);
+                    allObjs_[j]->onCollision(allObjs_[i]);
+                }
+            }
+            */
         }
 
-        if (player->isCollided(*inspector)){
-            inspector->onCollision(*player);
-            player->onCollision(*inspector);
-        }
-
-        if (inspector->isCollided(*bench)){
-            bench->onCollision(*inspector);
-            inspector->onCollision(*bench);
-        }
+        //drawable->draw(window_);
+        //bench->draw(window_);
+        //player_->draw(window_);
+        //inspector->draw(window_);
+        //
+        //player->move();
+        //inspector->move();
+        //
+        //if (player_->isCollided(*bench)){
+        //    bench->onCollision(*player_);
+        //    player_->onCollision(*bench);
+        //}
+        //
+        //if (player->isCollided(*inspector)){
+        //    inspector->onCollision(*player_);
+        //    player_->onCollision(*inspector);
+        //}
+        //
+        //if (inspector->isCollided(*bench)){
+        //    bench->onCollision(*inspector);
+        //    inspector->onCollision(*bench);
+        //}
 
         window_->display();
     }

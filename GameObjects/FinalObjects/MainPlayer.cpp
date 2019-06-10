@@ -3,7 +3,7 @@
 
 /** @file */
 
-MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture *texture, sf::Sprite sprite, sf::Color color)
+MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture * texture, sf::Sprite sprite, sf::Color color)
         : PlayerableObject(pos, size, hitbox, v, texture, sprite, color),
         DrawableObject(pos, size, texture, sprite, color), PhysicalObject(hitbox, pos, size),
         MoveableObject(pos,size, v), GameObject(pos, size)
