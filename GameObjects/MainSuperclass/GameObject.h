@@ -38,6 +38,9 @@ public:
     Vec getSize() const;
     gameType getObjType() const;
     int setObjType(gameType obj_type);
+
+    virtual int draw (sf::RenderTarget * screen) const = 0;
+    virtual int draw (Vec pos, sf::RenderTarget * screen) const = 0;
 };
 
 

@@ -512,10 +512,11 @@ int GameEngine::runGame() {
                     break;
             }
 
-            /*
-            allObjs_[i]->move(window_);
+
+            //allObjs_[i]->move(window_);
             allObjs_[i]->draw(window_);
 
+            /*
             for(size_t j = i + 1; j < allObjsCount_; j++){
                 if(allObjs_[i]->isCollided(allObjs_[j])){
                     allObjs_[i]->onCollision(allObjs_[j]);
