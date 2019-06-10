@@ -336,6 +336,7 @@ int GameEngine::parseObjs(gameType obj_type) {
         return ERR_GMENG_PRSCFOBJS_FILECLS;
     }
 
+    return 0;
 }
 
 int GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim) {
@@ -419,6 +420,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
     switch(obj_type){
         case type_playable_obj_e:
             {
+                errno = 0;
                 MainPlayer * player = new MainPlayer(Vec(500, 500), size, hitbox, v, texture,
                                                     (texture) ? sf::Sprite(*texture) : sf::Sprite());
                 if (player) {
@@ -433,7 +435,8 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
         case type_enemy_obj_e:
             {
                 for(size_t i = 0; i < enemyNum_; i++){
-                    TrainInspector * trainInspector = new TrainInspector(player_, Vec(800, 800), size, hitbox, v, texture,
+                    errno = 0;
+                    TrainInspector * trainInspector = new TrainInspector(player_, Vec(i * 200, i * 200), size, hitbox, v, texture,
                                                                          (texture) ? sf::Sprite(*texture) : sf::Sprite());
                     if (!trainInspector) {
                         return ERR_GMENG_GENGMOBJ_ENEMY;
@@ -448,7 +451,8 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
         case type_static_draw_obj_e:
             {
                 for(size_t i = 0; i < staticObjNum_; i++){
-                    Bench * bench = new Bench(Vec(300, 300), size, hitbox, texture,
+                    errno = 0;
+                    Bench * bench = new Bench(Vec(i * 300, i * 300), size, hitbox, texture,
                                                                          (texture) ? sf::Sprite(*texture) : sf::Sprite());
                     if (!bench) {
                         return ERR_GMENG_GENGMOBJ_STATICOBJ;
@@ -496,25 +500,70 @@ int GameEngine::runGame() {
         window_->clear();
 
         drawable->draw(window_);
+        gameType obj_type = type_unknown_e;
+
 
         for(size_t i = 0; i < allObjsCount_; i++){
 
-            gameType obj_type = allObjs_[i]->getObjType();
+            obj_type = allObjs_[i]->getObjType();
 
             switch(obj_type){
-                case type_playable_obj_e:
+                case type_main_player_e:
+                    {
+                    MainPlayer *player = dynamic_cast<MainPlayer *>(allObjs_[i]);
+                    player->draw(window_);
+                    player->move();
+                        for(size_t j = i + 1; j < allObjsCount_; j++){
+                            PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(allObjs_[j]);
+                            if(player->isCollided(*physObj)){
+                                player->onCollision(*physObj);
+                                physObj->onCollision(*player);
+                            }
+                        }
+                    }
                     break;
-                case type_enemy_obj_e:
+                case type_train_inspector_e:
+                    {
+                    TrainInspector * trainInspector = dynamic_cast<TrainInspector *>(allObjs_[i]);
+                    trainInspector->draw(window_);
+                    trainInspector->move();
+                        for(size_t j = i + 1; j < allObjsCount_; j++){
+                            PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(allObjs_[j]);
+                            if(trainInspector->isCollided(*physObj)){
+                                trainInspector->onCollision(*physObj);
+                                physObj->onCollision(*trainInspector);
+                            }
+                        }
+                    }
                     break;
                 case type_moveable_obj_e:
+                    {
+                    TrainInspector * insp = dynamic_cast<TrainInspector *>(allObjs_[i]);
+                    insp->draw(window_);
+                    insp->move();
+                    }
                     break;
-                case type_static_draw_obj_e:
+                case type_bench_e:
+                    {
+                        Bench * bench = dynamic_cast<Bench *>(allObjs_[i]);
+                        bench->draw(window_);
+                        for(size_t j = i + 1; j < allObjsCount_; j++){
+                            PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(allObjs_[j]);
+                            if(bench->isCollided(*physObj)){
+                                bench->onCollision(*physObj);
+                                physObj->onCollision(*bench);
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    printf("something strange!\n");
                     break;
             }
 
 
             //allObjs_[i]->move(window_);
-            allObjs_[i]->draw(window_);
+            //allObjs_[i]->draw(window_);
 
             /*
             for(size_t j = i + 1; j < allObjsCount_; j++){
