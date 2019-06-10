@@ -229,14 +229,25 @@ int GameEngine::parseConfigObjects() {
                 err_code = parseObjNums();
                 ERR_CHECK(logfile, 0);
                 if (err_code) return err_code;
-            } else if (!strcmp(CFG_PLAYER_GROUP, tmp) || !strcmp(CFG_INSP_GROUP, tmp) || !strcmp(CFG_PSG_GROUP, tmp)){
+            } else {
+
+                gameType obj_type = type_unknown_e;
+
+                if( !strcmp(CFG_PLAYER_GROUP, tmp) ){
+                    obj_type = type_playable_obj_e;
+                } else if ( !strcmp(CFG_INSP_GROUP, tmp) ) {
+                    obj_type = type_enemy_obj_e;
+                } else if ( !strcmp(CFG_PSG_GROUP, tmp) ) {
+                    obj_type = type_moveable_obj_e;
+                } else if ( !strcmp(CFG_BNCH_GROUP, tmp) ) {
+                    obj_type = type_static_draw_obj_e;
+                } else {
+                    continue;
+                }
+
+
                 bzero(tmp, TMP_STR_SIZE);
-                err_code = parseMovePhisObj();
-                ERR_CHECK(logfile, 0);
-                if (err_code) return err_code;
-            } else if (!strcmp(CFG_BNCH_GROUP, tmp)){
-                bzero(tmp, TMP_STR_SIZE);
-                err_code = parseStaticObjects();
+                err_code = parseObjs(obj_type);
                 ERR_CHECK(logfile, 0);
                 if (err_code) return err_code;
             }
@@ -270,13 +281,70 @@ int GameEngine::parseObjNums() {
         staticObjNum_ = staticObj_num;
 
         allObjsCount_ = playerNum_ + enemyNum_ + neutralNum_ + staticObjNum_;
-        staticObjNum_ = true;
+        cfgObjNumCounted_ = true;
 
     } else {
-        return ERR_GMENG_PRSCFGMUS_FILECLS;
+        return ERR_GMENG_PRSCFGOBJNUMS_FILECLS;
     }
 
     return 0;
+}
+
+int GameEngine::parseObjs(gameType obj_type) {
+
+    if(fileIsOpened_) {
+
+        if (cfgObjNumCounted_) {
+
+            int err_code = 0;
+            char tmp[TMP_STR_SIZE] = {};
+            dataType size_x = defSize.x;
+            dataType size_y = defSize.y;
+            dataType hitbox_x = defHitbox.x;
+            dataType hitbox_y = defHitbox.y;
+            dataType v_x = defSpeed.x;
+            dataType v_y = defSpeed.y;
+            char texture_path[TMP_STR_SIZE] = {};
+            sf::Texture * texture = nullptr;
+
+            PARSE_CONFIG_PARAMS(configFile_, "%f", size_x, defSize.x);
+            PARSE_CONFIG_PARAMS(configFile_, "%f", size_y, defSize.y);
+            PARSE_CONFIG_PARAMS(configFile_, "%f", hitbox_x, defHitbox.x);
+            PARSE_CONFIG_PARAMS(configFile_, "%f", hitbox_y, defHitbox.y);
+            if(obj_type == type_playable_obj_e || obj_type == type_enemy_obj_e || obj_type == type_moveable_obj_e) {
+                PARSE_CONFIG_PARAMS(configFile_, "%f", v_x, defSpeed.x);
+                PARSE_CONFIG_PARAMS(configFile_, "%f", v_y, defSpeed.y);
+            }
+
+            fscanf(configFile_, "%s", tmp);
+            if ( !fscanf(configFile_, "%s",  texture_path) ){
+                bzero(texture_path, TMP_STR_SIZE);
+                strcpy(texture_path, NO_TEXTURE_SYMBOLS);
+            }
+
+            if( !strcmp(texture_path, NO_TEXTURE_SYMBOLS) ){
+                texture = nullptr;
+            } else {
+                texture = new sf::Texture();
+                if (!texture->loadFromFile (texture_path)){
+                    delete texture;
+                    texture = nullptr;
+                } else {
+                    texture->setSmooth(defTextureSmooth);
+                }
+            }
+
+            err_code = genGameObjs(obj_type, Vec(size_x, size_y), Vec(hitbox_x, hitbox_y), texture, Vec(v_x, v_y) );
+            ERR_CHECK(logfile, 1);
+
+        } else {
+            return ERR_GMENG_PRSCFOBJS_CFGSEQ;
+        }
+
+    } else {
+        return ERR_GMENG_PRSCFOBJS_FILECLS;
+    }
+
 }
 
 int GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim) {
@@ -320,7 +388,21 @@ int GameEngine::createTextures() {
     return 0;
 }
 
-int GameEngine::genGameObjs() {
+int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture * texture, Vec v) {
+
+    switch(obj_type){
+        case type_playable_obj_e:
+            break;
+        case type_enemy_obj_e:
+            break;
+        case type_moveable_obj_e:
+            break;
+        case type_static_draw_obj_e:
+            break;
+        default:
+            break;
+    }
+
     return 0;
 }
 

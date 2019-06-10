@@ -48,10 +48,11 @@ private:
     int parseConfigMusic();
     int parseConfigObjects();
     int parseObjNums();
+    int parseObjs(gameType obj_type);
     int createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim);
     int createMusicTracks(uint32_t mus_num, const char * musPath, bool setLoop);
     int createTextures();
-    int genGameObjs();
+    int genGameObjs(gameType obj_type, Vec size = defSize, Vec hitbox = defHitbox, sf::Texture * texture = nullptr, Vec v = defSpeed);
 
     //! A group of methods for game processing
     bool checkStopEvents();

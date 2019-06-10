@@ -69,6 +69,9 @@ enum Errors {
             ERR_GMENG_CRTWIN_WINNUM,
     //! Error code: GameEngine::parseConfigObjects() -> config file is not opened
             ERR_GMENG_PRSCFGOBJ_FILECLS,
+            ERR_GMENG_PRSCFGOBJNUMS_FILECLS,
+            ERR_GMENG_PRSCFOBJS_FILECLS,
+            ERR_GMENG_PRSCFOBJS_CFGSEQ,
 };
 
 #endif //VECTOR_ERR_CODES_H

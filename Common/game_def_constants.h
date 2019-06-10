@@ -63,6 +63,10 @@ const uint32_t defEnemyNum = 1;
 const uint32_t defNeutralNum = 1;
 const uint32_t defStaticObjNum = 1;
 
+const char * const NO_TEXTURE_SYMBOLS = "\\/000\\/";
+
+const bool defTextureSmooth = true;
+
 
 
 #endif //MYGAME_GAME_DEF_CONSTANTS_H
