@@ -28,3 +28,12 @@ PlayerableObject::PlayerableObject(Vec pos, Vec size, Vec hitbox, Vec v, sf::Tex
 PlayerableObject::~PlayerableObject() {
     texture_ = nullptr;
 }
+
+int PlayerableObject::setCaugthFlag(bool caugthFlag) {
+    isCaught_ = caugthFlag;
+    return 0;
+}
+
+bool PlayerableObject::getCaughtFlag() const {
+    return isCaught_;
+}

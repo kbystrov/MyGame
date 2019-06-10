@@ -31,6 +31,10 @@ GameEngine::~GameEngine() {
     music_ = nullptr;
     songsCount_ = 0;
 
+    if(window_ && window_->isOpen()){
+        window_->close();
+    }
+
     delete window_;
     window_ = nullptr;
     windsCount_ = 0;
@@ -59,7 +63,7 @@ int GameEngine::closeConfigFile() {
             fclose(configFile_);
             fileIsOpened_ = false;
         } else {
-            return ERR_GMENG_INITPARAM_CONFFILE;
+            return ERR_GMENG_CLSCFG_FILE;
         }
     }
 
@@ -74,19 +78,7 @@ int GameEngine::initGameEngineParams() {
 
     err_code = parseConfig();
     ERR_CHECK(logfile, 1);
-    /*
-    err_code = createWindow();
-    ERR_CHECK(logfile, 1);
 
-    err_code = createMusicTracks();
-    ERR_CHECK(logfile, 0);
-
-    err_code = createTextures();
-    ERR_CHECK(logfile, 1);
-
-    err_code = genGameObjs();
-    ERR_CHECK(logfile, 1);
-    */
     err_code = closeConfigFile();
     ERR_CHECK(logfile, 0);
 
@@ -104,17 +96,17 @@ int GameEngine::parseConfig() {
             fscanf(configFile_, "%s", tmp);
             if(!strcmp(CFG_DELIM_STR, tmp)){
                 bzero(tmp, TMP_STR_SIZE);
-            } else if (!strcmp("WINDOW", tmp)) {
+            } else if (!strcmp(CFG_WIN_GROUP, tmp)) {
                 bzero(tmp, TMP_STR_SIZE);
                 err_code = parseConfigWindows();
                 ERR_CHECK(logfile, 0);
                 if (err_code) return err_code;
-            } else if (!strcmp("AUDIO", tmp)){
+            } else if (!strcmp(CFG_MUS_GROUP, tmp)){
                 bzero(tmp, TMP_STR_SIZE);
                 err_code = parseConfigMusic();
                 ERR_CHECK(logfile, 0);
                 if (err_code) return err_code;
-            } else if (!strcmp("OBJECTS", tmp)){
+            } else if (!strcmp(CFG_OBJ_GROUP, tmp)){
                 bzero(tmp, TMP_STR_SIZE);
                 err_code = parseConfigObjects();
                 ERR_CHECK(logfile, 0);
@@ -123,7 +115,7 @@ int GameEngine::parseConfig() {
         }
 
     } else {
-        return ERR_GMENG_CRTWIN_FILECLS;
+        return ERR_GMENG_PRSCFG_FILECLS;
     }
 
     return 0;
@@ -135,11 +127,34 @@ int GameEngine::parseConfigWindows() {
 
         int err_code = 0;
         char tmp[TMP_STR_SIZE] = {};
+
+        while(!feof(configFile_)){
+            fscanf(configFile_, "%s", tmp);
+            if(!strcmp(CFG_DELIM_STR, tmp)){
+                bzero(tmp, TMP_STR_SIZE);
+            } else if (!strcmp(CFG_WIN_GROUP, tmp)) {
+                bzero(tmp, TMP_STR_SIZE);
+                err_code = parseConfigWindows();
+                ERR_CHECK(logfile, 0);
+                if (err_code) return err_code;
+            } else if (!strcmp(CFG_MUS_GROUP, tmp)){
+                bzero(tmp, TMP_STR_SIZE);
+                err_code = parseConfigMusic();
+                ERR_CHECK(logfile, 0);
+                if (err_code) return err_code;
+            } else if (!strcmp(CFG_OBJ_GROUP, tmp)){
+                bzero(tmp, TMP_STR_SIZE);
+                err_code = parseConfigObjects();
+                ERR_CHECK(logfile, 0);
+                if (err_code) return err_code;
+            }
+        }
+
         uint32_t win_num = defWinNum;
-        uint32_t win_w = defWinSize;
-        uint32_t win_h = defWinSize;
+        uint32_t win_w = defWinW;
+        uint32_t win_h = defWinH;
         char title[TMP_STR_SIZE] = {};
-        bool vert_sync_flag = false;
+        uint32_t vert_sync_flag = true;
         uint32_t frame_rt_lim = defFrameRateLim;
 
         PARSE_CONFIG_PARAMS(configFile_, "%d", win_num, defWinNum);
@@ -159,7 +174,7 @@ int GameEngine::parseConfigWindows() {
         ERR_CHECK(logfile, 1);
 
     } else {
-        return ERR_GMENG_CRTWIN_FILECLS;
+        return ERR_GMENG_PRSCFGWIN_FILECLS;
     }
 
     return 0;
@@ -192,100 +207,73 @@ int GameEngine::parseConfigMusic() {
         ERR_CHECK(logfile, 1);
 
     } else {
-        return ERR_GMENG_CRTWIN_FILECLS;
+        return ERR_GMENG_PRSCFGMUS_FILECLS;
     }
 
     return 0;
 }
 
 int GameEngine::parseConfigObjects() {
-    return 0;
-}
-
-
-int GameEngine::createWindow() {
 
     if(fileIsOpened_) {
 
+        int err_code = 0;
         char tmp[TMP_STR_SIZE] = {};
-        uint32_t win_num = defWinNum;
-        uint32_t win_w = defWinSize;
-        uint32_t win_h = defWinSize;
-        char title[TMP_STR_SIZE] = {};
-        bool vet_sync_flag = false;
-        uint32_t frame_rt_lim = defFrameRateLim;
 
-
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%d", &win_num);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%d",  &win_w);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%d",  &win_h);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%s",  title);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%d",  &vet_sync_flag);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%d",  &frame_rt_lim);
-        fscanf(configFile_, "%s", tmp);
-
-        window_ = new sf::RenderWindow(sf::VideoMode(win_w, win_h), title);
-        if (window_ == nullptr) {
-            return ERR_GMENG_CRTWIN_WIN;
+        while(!feof(configFile_)){
+            fscanf(configFile_, "%s", tmp);
+            if(!strcmp(CFG_DELIM_STR, tmp)){
+                bzero(tmp, TMP_STR_SIZE);
+            } else if (!strcmp(CFG_OBJNUM_GROUP, tmp)) {
+                bzero(tmp, TMP_STR_SIZE);
+                err_code = parseObjNums();
+                ERR_CHECK(logfile, 0);
+                if (err_code) return err_code;
+            } else if (!strcmp(CFG_PLAYER_GROUP, tmp) || !strcmp(CFG_INSP_GROUP, tmp) || !strcmp(CFG_PSG_GROUP, tmp)){
+                bzero(tmp, TMP_STR_SIZE);
+                err_code = parseMovePhisObj();
+                ERR_CHECK(logfile, 0);
+                if (err_code) return err_code;
+            } else if (!strcmp(CFG_BNCH_GROUP, tmp)){
+                bzero(tmp, TMP_STR_SIZE);
+                err_code = parseStaticObjects();
+                ERR_CHECK(logfile, 0);
+                if (err_code) return err_code;
+            }
         }
-        windsCount_ = win_num;
-
-        window_->setVerticalSyncEnabled(vet_sync_flag);
-        window_->setFramerateLimit(frame_rt_lim);
 
     } else {
-        return ERR_GMENG_CRTWIN_FILECLS;
+        return ERR_GMENG_PRSCFGOBJ_FILECLS;
     }
 
     return 0;
 }
 
+int GameEngine::parseObjNums() {
 
-int GameEngine::createMusicTracks() {
-
-    if(fileIsOpened_){
+    if(fileIsOpened_) {
 
         char tmp[TMP_STR_SIZE] = {};
-        uint32_t mus_num = defWinNum;
-        char mus_path[TMP_STR_SIZE] = {};
-        bool set_loop = true;
+        uint32_t player_num = defPlayerNum;
+        uint32_t enemy_num = defEnemyNum;
+        uint32_t neutral_num = defNeutralNum;
+        uint32_t staticObj_num = defStaticObjNum;
 
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%d", &mus_num);
+        PARSE_CONFIG_PARAMS(configFile_, "%d", player_num, defPlayerNum);
+        PARSE_CONFIG_PARAMS(configFile_, "%d", enemy_num, defEnemyNum);
+        PARSE_CONFIG_PARAMS(configFile_, "%d", neutral_num, defNeutralNum);
+        PARSE_CONFIG_PARAMS(configFile_, "%d", staticObj_num, defStaticObjNum);
 
-        songsCount_ = mus_num;
-        if (!songsCount_) return 0;
+        playerNum_ = player_num;
+        enemyNum_ = enemy_num;
+        neutralNum_ = neutral_num;
+        staticObjNum_ = staticObj_num;
 
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%s", mus_path);
-        fscanf(configFile_, "%s", tmp);
-        fscanf(configFile_, "%d", &set_loop);
-        fscanf(configFile_, "%s", tmp);
-
-        music_ = new sf::Music();
-        if(music_ == nullptr){
-            return ERR_GMENG_CRTMUS_MUS;
-        }
-
-        if (!music_->openFromFile(mus_path)){
-            fprintf(logfile, "No music for game was found\n");
-            return ERR_GMENG_CRTMUS_MUSPATH;
-        }
-
-        music_->setLoop (set_loop);
+        allObjsCount_ = playerNum_ + enemyNum_ + neutralNum_ + staticObjNum_;
+        staticObjNum_ = true;
 
     } else {
-        return ERR_GMENG_CRTMUS_FILECLS;
+        return ERR_GMENG_PRSCFGMUS_FILECLS;
     }
 
     return 0;
@@ -293,14 +281,18 @@ int GameEngine::createMusicTracks() {
 
 int GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim) {
 
-    window_ = new sf::RenderWindow(sf::VideoMode(win_w, win_h), (title) ? title : defTitle);
-    if (window_ == nullptr) {
-        return ERR_GMENG_CRTWIN_WIN;
-    }
-    windsCount_ = win_num;
+    if (windsCount_ = win_num) {
+        window_ = new sf::RenderWindow(sf::VideoMode(win_w, win_h), (title) ? title : defTitle);
+        if (window_ == nullptr) {
+            return ERR_GMENG_CRTWIN_WIN;
+        }
+        windsCount_ = win_num;
 
-    window_->setVerticalSyncEnabled(vet_sync_flag);
-    window_->setFramerateLimit(frame_rt_lim);
+        window_->setVerticalSyncEnabled(vet_sync_flag);
+        window_->setFramerateLimit(frame_rt_lim);
+    } else {
+        return ERR_GMENG_CRTWIN_WINNUM;
+    }
 
     return 0;
 }
@@ -388,6 +380,10 @@ int GameEngine::runGame() {
         window_->display();
     }
 
+    if(window_->isOpen()){
+        window_->close();
+    }
+
     return 0;
 }
 
@@ -400,6 +396,20 @@ bool GameEngine::checkStopEvents() {
             window_->close();
             return true;
         }
+    }
+
+    if (sf::Keyboard::isKeyPressed (sf::Keyboard::Escape)){
+        window_->close();
+        return true;
+    }
+
+    if (!window_->isOpen()){
+        window_->close();
+        return true;
+    }
+
+    if(player_ && player_->getCaughtFlag()){
+        return true;
     }
 
     return false;

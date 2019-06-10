@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include "GameEngine.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -9,7 +8,7 @@ FILE * logfile; ///< @param Global variable for main log of the game
 int main()
 {
 
-    if ( (logfile = fopen("log/gamelog", "w")) == nullptr ){
+    if ( (logfile = fopen("log/gamelog", "a")) == nullptr ){
         logfile = stderr;
         fprintf(logfile, "Can't open file for logging game - all game warning and error info will be displayed in stderr\n");
     }

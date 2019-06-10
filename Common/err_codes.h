@@ -43,18 +43,32 @@ enum Errors {
             ERR_GMENG_OPNCNFG_INITSTATE,
     //! Error code: GameEngine::openConfigFile() -> error during opening config file
             ERR_GMENG_OPNCNFG_FILE,
-    //! Error code: GameEngine::createWindow() -> error during allocating memory for window
+    /** Error code: GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim)
+     * -> error during allocating memory for window
+     */
             ERR_GMENG_CRTWIN_WIN,
-    //! Error code: GameEngine::createMusicTracks() -> error during allocating memory for music
+    /** Error code: GameEngine::createMusicTracks(uint32_t mus_num, const char * musPath, bool setLoop)
+     * -> error during allocating memory for music
+     */
             ERR_GMENG_CRTMUS_MUS,
-    //! Error code: GameEngine::createMusicTracks() -> no music was found in resources directory
+    /** Error code: GameEngine::createMusicTracks(uint32_t mus_num, const char * musPath, bool setLoop)
+     * -> error when trying to open music files
+     */
             ERR_GMENG_CRTMUS_MUSPATH,
-    //! Error code: GameEngine::createWindow() -> config file is not opened
-            ERR_GMENG_CRTWIN_FILECLS,
+    //! Error code: GameEngine::parseConfig() -> config file is not opened
+            ERR_GMENG_PRSCFG_FILECLS,
+    //! Error code: GameEngine::parseConfigWindows() -> config file is not opened
+            ERR_GMENG_PRSCFGWIN_FILECLS,
     //! Error code: GameEngine::createMusicTracks() -> config file is not opened
-            ERR_GMENG_CRTMUS_FILECLS,
-    //! Error code: GameEngine::initGameEngineParams() -> config file is opened and nullptr
-            ERR_GMENG_INITPARAM_CONFFILE,
+            ERR_GMENG_PRSCFGMUS_FILECLS,
+    //! Error code: GameEngine::closeConfigFile()  -> config file is opened and nullptr
+            ERR_GMENG_CLSCFG_FILE,
+    /** Error code: GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim)
+    * -> zero number of windows in config file
+    */
+            ERR_GMENG_CRTWIN_WINNUM,
+    //! Error code: GameEngine::parseConfigObjects() -> config file is not opened
+            ERR_GMENG_PRSCFGOBJ_FILECLS,
 };
 
 #endif //VECTOR_ERR_CODES_H

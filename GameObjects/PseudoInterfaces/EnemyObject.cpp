@@ -32,7 +32,7 @@ EnemyObject::~EnemyObject() {
     trgt_ = nullptr;
 }
 
-bool EnemyObject::getAttackState() {
+bool EnemyObject::getAttackState() const {
     return isAttacking_;
 }
 

@@ -21,7 +21,7 @@ public:
 
     virtual ~EnemyObject() override;
 
-    bool getAttackState();
+    bool getAttackState() const;
     int setAttackState(bool state);
 };
 

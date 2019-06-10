@@ -21,7 +21,7 @@ public:
     virtual int flashTarget() = 0;
 
     int setTarget(GameObject * trgt);
-    GameObject * getTarget();
+    GameObject * getTarget() const;
 };
 
 #endif //MYGAME_WITHTARGETOBJECT_H

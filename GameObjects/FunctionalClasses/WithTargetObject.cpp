@@ -42,6 +42,6 @@ int WithTargetObject::setTarget(GameObject * trgt) {
     return 0;
 }
 
-GameObject * WithTargetObject::getTarget() {
+GameObject * WithTargetObject::getTarget() const {
     return trgt_;
 }
