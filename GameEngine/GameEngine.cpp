@@ -57,6 +57,7 @@ int GameEngine::closeConfigFile() {
     if(fileIsOpened_){
         if(configFile_) {
             fclose(configFile_);
+            fileIsOpened_ = false;
         } else {
             return ERR_GMENG_INITPARAM_CONFFILE;
         }
@@ -165,6 +166,35 @@ int GameEngine::parseConfigWindows() {
 }
 
 int GameEngine::parseConfigMusic() {
+
+    if(fileIsOpened_) {
+
+        int err_code = 0;
+        char tmp[TMP_STR_SIZE] = {};
+        uint32_t mus_num = defSongsNum;
+        char mus_path[TMP_STR_SIZE] = {};
+        uint32_t set_loop = 1;
+
+        PARSE_CONFIG_PARAMS(configFile_, "%d", mus_num, defSongsNum);
+
+        songsCount_ = mus_num;
+        if (!songsCount_) return 0;
+
+        fscanf(configFile_, "%s", tmp);
+        if ( !fscanf(configFile_, "%s",  mus_path) ){
+            bzero(mus_path, TMP_STR_SIZE);
+            strcpy(mus_path, defMusic);
+        }
+
+        PARSE_CONFIG_PARAMS(configFile_, "%d", set_loop, defSetLoopFlag);
+
+        err_code = createMusicTracks(mus_num, mus_path, set_loop);
+        ERR_CHECK(logfile, 1);
+
+    } else {
+        return ERR_GMENG_CRTWIN_FILECLS;
+    }
+
     return 0;
 }
 
@@ -263,7 +293,7 @@ int GameEngine::createMusicTracks() {
 
 int GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim) {
 
-    window_ = new sf::RenderWindow(sf::VideoMode(win_w, win_h), title);
+    window_ = new sf::RenderWindow(sf::VideoMode(win_w, win_h), (title) ? title : defTitle);
     if (window_ == nullptr) {
         return ERR_GMENG_CRTWIN_WIN;
     }
@@ -271,6 +301,25 @@ int GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, c
 
     window_->setVerticalSyncEnabled(vet_sync_flag);
     window_->setFramerateLimit(frame_rt_lim);
+
+    return 0;
+}
+
+int GameEngine::createMusicTracks(uint32_t mus_num, const char * musPath, bool setLoop) {
+
+    if (mus_num) {
+        music_ = new sf::Music();
+        if (music_ == nullptr) {
+            return ERR_GMENG_CRTMUS_MUS;
+        }
+
+        if (!music_->openFromFile( (musPath) ? musPath : defMusic )) {
+            fprintf(logfile, "No music for game was found\n");
+            return ERR_GMENG_CRTMUS_MUSPATH;
+        }
+
+        music_->setLoop(setLoop);
+    }
 
     return 0;
 }

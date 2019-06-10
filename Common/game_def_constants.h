@@ -18,8 +18,6 @@
 extern FILE * logfile;
 //! @def Default config file for current level
 const char * const defConfigName = "configs/config2.ini";
-//! @def Default path to music
-const char * const defMusic = "GameResources/Music/game_music.wav";
 //! @def Default delimiter in config file for group of parameters
 const char * const CFG_DELIM_STR = "*******************************";
 //! @def Default size of temporary buffer for read symbols from config lines
@@ -33,6 +31,12 @@ const uint32_t defWinH = 720;
 const char * const defTitle = "Suburban_Train_Game";
 const bool defVertSyncFlag = true;
 const uint32_t defFrameRateLim = 25;
+
+//! Default music parameters
+const uint32_t defSongsNum = 1;
+const char * const defMusic = "GameResources/Music/game_music.wav";
+const bool defSetLoopFlag = true;
+
 
 
 #endif //MYGAME_GAME_DEF_CONSTANTS_H

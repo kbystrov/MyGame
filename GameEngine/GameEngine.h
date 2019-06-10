@@ -29,7 +29,12 @@ private:
 
     GameObject * allObjs_ = nullptr;          ///< @param Array of all objetcs in Game
     size_t allObjsCount_ = 0;                 ///< @param Number of elements in Game Objects Array
-    MainPlayer * player_ = nullptr;           ///< @param Player's pointer
+    PlayerableObject * player_ = nullptr;     ///< @param Player's pointer
+    size_t playerNum_ = 1;
+    size_t enemyNum_ = 0;
+    size_t neutralNum_ = 0;
+    size_t staticObjNum_ = 0;
+
 
     sf::Clock clock_;                          ///< @param Games clock
     bool isAlarm_ = false;                     ///< @param Flag of that Train Inspectors have started their attempts for arresting Player
@@ -49,6 +54,7 @@ public:
     int createWindow();
     int createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim);
     int createMusicTracks();
+    int createMusicTracks(uint32_t mus_num, const char * musPath, bool setLoop);
     int createTextures();
     int genGameObjs();
     //! A group of methods for game processing
