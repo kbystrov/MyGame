@@ -21,13 +21,17 @@ EnemyObject::EnemyObject(GameObject * trgt, Vec pos, Vec size, Vec hitbox, Vec v
                             #endif
 
                             #ifdef CTR_DEBUG
-                            printf("EnemyObject ctr!\n");
+                            printf("EnemyObject ctr = %p!\n", this);
                             #endif // !CTR_DEBUG
 
                             isAttacking_ = attackState;
                          }
 
 EnemyObject::~EnemyObject() {
+    #ifdef CTR_DEBUG
+    printf("EnemyObject destructor = %p!\n", this);
+    #endif // !CTR_DEBUG
+
     texture_ = nullptr;
     trgt_ = nullptr;
 }

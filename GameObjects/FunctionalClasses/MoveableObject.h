@@ -19,7 +19,7 @@ protected:
 public:
     explicit MoveableObject(Vec pos = defPos, Vec size = defSize, Vec v = defSpeed);
 
-    virtual ~MoveableObject() override {} ///< todo Спросить Якова про override и virtual
+    virtual ~MoveableObject() override;
 
     int setSpeed(Vec v);
     Vec getSpeed() const;

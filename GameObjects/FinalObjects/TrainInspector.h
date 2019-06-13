@@ -11,6 +11,7 @@ public:
     explicit TrainInspector(GameObject * trgt = nullptr, Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr,
                             sf::Sprite sprite = sf::Sprite(), sf::Color color = enemyColor, bool attackState = false);
 
+    virtual ~TrainInspector() override;
     int onCollision(GameObject &physicalObject) override;
 
     int move() override;

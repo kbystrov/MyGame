@@ -21,11 +21,15 @@ PlayerableObject::PlayerableObject(Vec pos, Vec size, Vec hitbox, Vec v, sf::Tex
                                     #endif
 
                                     #ifdef CTR_DEBUG
-                                    printf("PlayerableObject ctr!\n");
+                                    printf("PlayerableObject ctr = %p!\n", this);
                                     #endif // !CTR_DEBUG
                                     }
 
 PlayerableObject::~PlayerableObject() {
+    #ifdef CTR_DEBUG
+    printf("PlayerableObject destructor = %p!\n", this);
+    #endif // !CTR_DEBUG
+
     texture_ = nullptr;
 }
 

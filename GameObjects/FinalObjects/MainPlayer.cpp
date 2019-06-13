@@ -21,11 +21,15 @@ MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture * textu
         #endif
 
         #ifdef CTR_DEBUG
-        printf("MainPlayer ctr!\n\n");
+        printf("MainPlayer ctr = %p!\n\n", this);
         #endif // !CTR_DEBUG
         }
 
 MainPlayer::~MainPlayer() {
+    #ifdef CTR_DEBUG
+    printf("\nMainPlayer destructor = %p!\n", this);
+    #endif // !CTR_DEBUG
+
     texture_ = nullptr;
 }
 

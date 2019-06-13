@@ -6,7 +6,7 @@
 PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size): GameObject(pos, size) {
 
     #ifdef CTR_DEBUG
-    printf("PhysicalObject ctr!\n");
+    printf("PhysicalObject ctr = %p!\n", this);
     #endif // !CTR_DEBUG
 
     #ifdef GAME_DEBUG
@@ -30,6 +30,12 @@ PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size): GameObject(pos, s
         hitbox_ = hitbox;
     }
 
+}
+
+PhysicalObject::~PhysicalObject() {
+    #ifdef CTR_DEBUG
+    printf("PhysicalObject destructor = %p!\n", this);
+    #endif // !CTR_DEBUG
 }
 
 int PhysicalObject::setHitbox(Vec hitbox) {

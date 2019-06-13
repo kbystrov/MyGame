@@ -22,7 +22,13 @@ MoveableObject::MoveableObject(Vec pos, Vec size, Vec v): GameObject(pos, size) 
     v_tmp_ = v_;
 
     #ifdef CTR_DEBUG
-    printf("MoveableObject ctr!\n");
+    printf("MoveableObject ctr = %p!\n", this);
+    #endif // !CTR_DEBUG
+}
+
+MoveableObject::~MoveableObject() {
+    #ifdef CTR_DEBUG
+    printf("MoveableObject destructor = %p!\n", this);
     #endif // !CTR_DEBUG
 }
 

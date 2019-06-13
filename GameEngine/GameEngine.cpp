@@ -601,6 +601,12 @@ int GameEngine::runGame() {
         window_->display();
     }
 
+    for(size_t i = 0; i < allObjsCount_; i++){
+        delete allObjs_[i];
+    }
+
+    delete drawable;
+
     if(window_->isOpen()){
         window_->close();
     }

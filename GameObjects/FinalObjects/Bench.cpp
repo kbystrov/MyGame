@@ -20,12 +20,16 @@ Bench::Bench(Vec pos, Vec size, Vec hitbox, sf::Texture *texture, sf::Sprite spr
         #endif
 
         #ifdef CTR_DEBUG
-        printf("Bench ctr!\n\n");
+        printf("Bench ctr = %p!\n\n", this);
         #endif // !CTR_DEBUG
         }
 
 Bench::~Bench() {
-    texture_ = nullptr;
+        #ifdef CTR_DEBUG
+        printf("\nBench destructor = %p!\n", this);
+        #endif // !CTR_DEBUG
+
+        texture_ = nullptr;
 }
 
 int Bench::onCollision(GameObject &physicalObject) {

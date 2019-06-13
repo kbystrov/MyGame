@@ -16,7 +16,7 @@ protected:
 public:
     explicit PhysicalObject(Vec hitbox = defHitbox, Vec pos = defPos, Vec size = defSize);
 
-    virtual ~PhysicalObject() override {} ///< todo Спросить Якова про override и virtual
+    virtual ~PhysicalObject() override;
 
     int setHitbox(Vec hitbox);
     Vec getHitbox() const;

@@ -23,10 +23,20 @@ TrainInspector::TrainInspector(GameObject *trgt, Vec pos, Vec size, Vec hitbox, 
                                 #endif
 
                                 #ifdef CTR_DEBUG
-                                printf("TrainInspector ctr!\n");
+                                printf("TrainInspector ctr = %p!\n", this);
                                 #endif // !CTR_DEBUG
 
                                }
+
+
+TrainInspector::~TrainInspector() {
+    #ifdef CTR_DEBUG
+    printf("\nTrainInspector destructor = %p!\n", this);
+    #endif // !CTR_DEBUG
+
+    texture_ = nullptr;
+    trgt_ = nullptr;
+}
 
 int TrainInspector::onCollision(GameObject& physicalObject) {
 

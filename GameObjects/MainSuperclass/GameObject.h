@@ -30,7 +30,7 @@ protected:
 public:
     explicit GameObject(Vec pos = defPos, Vec size = defSize);
 
-    virtual ~GameObject() {}
+    virtual ~GameObject();
 
     int setPos(Vec pos);
     Vec getPos() const;
