@@ -479,25 +479,9 @@ int GameEngine::runGame() {
     DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
     ERRNO_CHECK(logfile);
 
-    //errno = 0;
-    //Bench * bench = new Bench(Vec(300,300), Vec(100,100), Vec(51, 51), nullptr, sf::Sprite(), sf::Color::Yellow);
-    //ERRNO_CHECK(logfile);
-    //
-    //errno = 0;
-    //MainPlayer * player = new MainPlayer(Vec(500,500), Vec(10,10), Vec(5, 5), Vec(4,4), nullptr, sf::Sprite(), sf::Color::Green);
-    //ERRNO_CHECK(logfile);
-    //
-    //errno = 0;
-    //TrainInspector * inspector = new TrainInspector(player, Vec(800,800), Vec(100,100), Vec(50, 50), Vec(3,3));
-    //ERRNO_CHECK(logfile);
-    /*
-    procFuncArr_[0] = &objProcessor::procMainPlayer;
-    procFuncArr_[1] = &objProcessor::procTrainInspector;
-    procFuncArr_[2] = &objProcessor::procBench;
-    */
-    while (window_->isOpen())
-    {
-        if( checkStopEvents() ){
+    while (window_->isOpen()) {
+
+        if (checkStopEvents()) {
             break;
         }
 
@@ -506,117 +490,38 @@ int GameEngine::runGame() {
         drawable->draw(window_);
         gameType obj_type = type_unknown_e;
 
-
-        for(size_t i = 0; i < allObjsCount_; i++){
+        for (size_t i = 0; i < allObjsCount_; i++) {
 
             obj_type = allObjs_[i]->getObjType();
 
-            switch(obj_type){
+            switch (obj_type) {
                 case type_main_player_e:
-                    /*{
-                    MainPlayer *player = dynamic_cast<MainPlayer *>(allObjs_[i]);
-                    player->draw(window_);
-                    player->move();
-                        for(size_t j = i + 1; j < allObjsCount_; j++){
-                            PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(allObjs_[j]);
-                            if(player->isCollided(*physObj)){
-                                player->onCollision(*physObj);
-                                physObj->onCollision(*player);
-                            }
-                        }
-                    }*/
-                    //proc_.procMainPlayer(allObjs_[i], i, *this);
-                {
                     (proc_.*(procFuncArr_[0]))(allObjs_[i], i, *this);
-                }
                     break;
                 case type_train_inspector_e:
-                    /*{
-                    TrainInspector * trainInspector = dynamic_cast<TrainInspector *>(allObjs_[i]);
-                    trainInspector->draw(window_);
-                    trainInspector->move();
-                        for(size_t j = i + 1; j < allObjsCount_; j++){
-                            PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(allObjs_[j]);
-                            if(trainInspector->isCollided(*physObj)){
-                                trainInspector->onCollision(*physObj);
-                                physObj->onCollision(*trainInspector);
-                            }
-                        }
-                    }*/
-                    //proc_.procTrainInspector(allObjs_[i], i, *this);
-                {
                     (proc_.*(procFuncArr_[1]))(allObjs_[i], i, *this);
-                }
                     break;
                 case type_bench_e:
-                    /*{
-                        Bench * bench = dynamic_cast<Bench *>(allObjs_[i]);
-                        bench->draw(window_);
-                        for(size_t j = i + 1; j < allObjsCount_; j++){
-                            PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(allObjs_[j]);
-                            if(bench->isCollided(*physObj)){
-                                bench->onCollision(*physObj);
-                                physObj->onCollision(*bench);
-                            }
-                        }
-                    }*/
-                    //proc_.procBench(allObjs_[i], i, *this);
-                {
                     (proc_.*(procFuncArr_[2]))(allObjs_[i], i, *this);
-                }
                     break;
                 default:
                     printf("something strange!\n");
                     break;
             }
 
-
-            //allObjs_[i]->move(window_);
-            //allObjs_[i]->draw(window_);
-
-            /*
-            for(size_t j = i + 1; j < allObjsCount_; j++){
-                if(allObjs_[i]->isCollided(allObjs_[j])){
-                    allObjs_[i]->onCollision(allObjs_[j]);
-                    allObjs_[j]->onCollision(allObjs_[i]);
-                }
-            }
-            */
         }
 
-        //drawable->draw(window_);
-        //bench->draw(window_);
-        //player_->draw(window_);
-        //inspector->draw(window_);
-        //
-        //player->move();
-        //inspector->move();
-        //
-        //if (player_->isCollided(*bench)){
-        //    bench->onCollision(*player_);
-        //    player_->onCollision(*bench);
-        //}
-        //
-        //if (player->isCollided(*inspector)){
-        //    inspector->onCollision(*player_);
-        //    player_->onCollision(*inspector);
-        //}
-        //
-        //if (inspector->isCollided(*bench)){
-        //    bench->onCollision(*inspector);
-        //    inspector->onCollision(*bench);
-        //}
-
         window_->display();
+
     }
 
-    for(size_t i = 0; i < allObjsCount_; i++){
+    for (size_t i = 0; i < allObjsCount_; i++) {
         delete allObjs_[i];
     }
 
     delete drawable;
 
-    if(window_->isOpen()){
+    if (window_->isOpen()) {
         window_->close();
     }
 
