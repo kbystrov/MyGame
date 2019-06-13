@@ -490,7 +490,11 @@ int GameEngine::runGame() {
     //errno = 0;
     //TrainInspector * inspector = new TrainInspector(player, Vec(800,800), Vec(100,100), Vec(50, 50), Vec(3,3));
     //ERRNO_CHECK(logfile);
-
+    /*
+    procFuncArr_[0] = &objProcessor::procMainPlayer;
+    procFuncArr_[1] = &objProcessor::procTrainInspector;
+    procFuncArr_[2] = &objProcessor::procBench;
+    */
     while (window_->isOpen())
     {
         if( checkStopEvents() ){
@@ -509,7 +513,7 @@ int GameEngine::runGame() {
 
             switch(obj_type){
                 case type_main_player_e:
-                    {
+                    /*{
                     MainPlayer *player = dynamic_cast<MainPlayer *>(allObjs_[i]);
                     player->draw(window_);
                     player->move();
@@ -520,10 +524,14 @@ int GameEngine::runGame() {
                                 physObj->onCollision(*player);
                             }
                         }
-                    }
+                    }*/
+                    //proc_.procMainPlayer(allObjs_[i], i, *this);
+                {
+                    (proc_.*(procFuncArr_[0]))(allObjs_[i], i, *this);
+                }
                     break;
                 case type_train_inspector_e:
-                    {
+                    /*{
                     TrainInspector * trainInspector = dynamic_cast<TrainInspector *>(allObjs_[i]);
                     trainInspector->draw(window_);
                     trainInspector->move();
@@ -534,17 +542,14 @@ int GameEngine::runGame() {
                                 physObj->onCollision(*trainInspector);
                             }
                         }
-                    }
-                    break;
-                case type_moveable_obj_e:
-                    {
-                    TrainInspector * insp = dynamic_cast<TrainInspector *>(allObjs_[i]);
-                    insp->draw(window_);
-                    insp->move();
-                    }
+                    }*/
+                    //proc_.procTrainInspector(allObjs_[i], i, *this);
+                {
+                    (proc_.*(procFuncArr_[1]))(allObjs_[i], i, *this);
+                }
                     break;
                 case type_bench_e:
-                    {
+                    /*{
                         Bench * bench = dynamic_cast<Bench *>(allObjs_[i]);
                         bench->draw(window_);
                         for(size_t j = i + 1; j < allObjsCount_; j++){
@@ -554,7 +559,11 @@ int GameEngine::runGame() {
                                 physObj->onCollision(*bench);
                             }
                         }
-                    }
+                    }*/
+                    //proc_.procBench(allObjs_[i], i, *this);
+                {
+                    (proc_.*(procFuncArr_[2]))(allObjs_[i], i, *this);
+                }
                     break;
                 default:
                     printf("something strange!\n");
@@ -651,5 +660,72 @@ int GameEngine::processCollisions() {
 }
 
 int GameEngine::doRender() {
+
     return 0;
 }
+
+int GameEngine::objProcessor::procMainPlayer(GameObject * gameObj, size_t objInd, const GameEngine& gameEngine) {
+
+    int err_code = 0;
+
+    MainPlayer * player = dynamic_cast<MainPlayer *>(gameObj);
+    err_code = player->draw(gameEngine.window_);
+    ERR_CHECK(logfile, 1);
+    err_code = player->move();
+    ERR_CHECK(logfile, 1);
+    for(size_t j = objInd + 1; j < gameEngine.allObjsCount_; j++){
+        PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(gameEngine.allObjs_[j]);
+        if(player->isCollided(*physObj)){
+            err_code = player->onCollision(*physObj);
+            ERR_CHECK(logfile, 1);
+            err_code = physObj->onCollision(*player);
+            ERR_CHECK(logfile, 1);
+        }
+    }
+
+    return err_code;
+}
+
+int GameEngine::objProcessor::procTrainInspector(GameObject * gameObj, size_t objInd, const GameEngine& gameEngine) {
+
+    int err_code = 0;
+
+    TrainInspector * trainInspector = dynamic_cast<TrainInspector *>(gameObj);
+    err_code = trainInspector->draw(gameEngine.window_);
+    ERR_CHECK(logfile, 1);
+    err_code = trainInspector->move();
+    ERR_CHECK(logfile, 1);
+    for(size_t j = objInd + 1; j < gameEngine.allObjsCount_; j++){
+        PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(gameEngine.allObjs_[j]);
+        if(trainInspector->isCollided(*physObj)){
+            err_code = trainInspector->onCollision(*physObj);
+            ERR_CHECK(logfile, 1);
+            err_code = physObj->onCollision(*trainInspector);
+            ERR_CHECK(logfile, 1);
+        }
+    }
+
+    return err_code;
+}
+
+int GameEngine::objProcessor::procBench(GameObject * gameObj, size_t objInd, const GameEngine& gameEngine) {
+
+    int err_code = 0;
+
+    Bench * bench = dynamic_cast<Bench *>(gameObj);
+    err_code = bench->draw(gameEngine.window_);
+    ERR_CHECK(logfile, 1);
+    for(size_t j = objInd + 1; j < gameEngine.allObjsCount_; j++){
+        PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(gameEngine.allObjs_[j]);
+        if(bench->isCollided(*physObj)){
+            err_code = bench->onCollision(*physObj);
+            ERR_CHECK(logfile, 1);
+            err_code = physObj->onCollision(*bench);
+            ERR_CHECK(logfile, 1);
+        }
+    }
+
+    return err_code;
+}
+
+

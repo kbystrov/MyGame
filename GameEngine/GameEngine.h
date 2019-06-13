@@ -13,9 +13,27 @@
 
 /** @file */
 
+//! Declaration of class GameEngine to use it for function typedef which will be used into GameEngine
+class GameEngine;
+
+/** @def Typedef for function which takes pointer to Game Object as argument and returns int value (for possible error codes)
+ * - it is used to have its own managing process for each type of Game Objects in the same  Game Engine
+ */
+//typedef int (* objProcFunc)(GameObject *, size_t, const GameEngine&);
+
 //! @class Class for processing all game logic with objects, sounds, textures, etc.
 class GameEngine {
 private:
+    //! @param Inner class for processing GameObjects
+    class objProcessor {
+    public:
+        int procMainPlayer(GameObject * gameObj, size_t objInd, const GameEngine& gameEngine);
+        int procTrainInspector(GameObject * gameObj, size_t objInd, const GameEngine& gameEngine);
+        int procBench(GameObject * gameObj, size_t objInd, const GameEngine& gameEngine);
+    };
+
+    objProcessor proc_;
+
     const char * configName_ =  defConfigName; ///< @param Config file name to read all levels's params
     FILE * configFile_ = nullptr;              ///< @param Config file to read all levels's params
     bool fileIsOpened_ = false;                ///< @param Flag of config file state (is opened or not)
@@ -38,6 +56,13 @@ private:
 
     sf::Clock clock_;                          ///< @param Games clock
     bool isAlarm_ = false;                     ///< @param Flag of that Train Inspectors have started their attempts for arresting Player
+
+    /** @def Typedef for function which takes pointer to Game Object as argument and returns int value (for possible error codes)
+     * - it is used to have its own managing process for each type of Game Objects in the same  Game Engine
+    */
+    typedef int (objProcessor:: * objProcFunc)(GameObject *, size_t, const GameEngine&);
+    //! @param Array of pointer to functions which processes each type of Game Object in unique way
+    objProcFunc procFuncArr_[3] = {&objProcessor::procMainPlayer, &objProcessor::procTrainInspector, &objProcessor::procBench};
 
     //! A group of methods for Game Engine initialization with parameters from config file (the predefined format of config file is required!)
     int openConfigFile();
@@ -67,6 +92,5 @@ public:
     int initGameEngineParams();
     int runGame();
 };
-
 
 #endif //MYGAME_GAMEENGINE_H
