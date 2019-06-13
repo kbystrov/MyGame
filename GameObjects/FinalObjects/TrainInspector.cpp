@@ -46,10 +46,38 @@ int TrainInspector::onCollision(PhysicalObject& physicalObject) {
         case type_main_player_e:
             printf("Player is caught!\n");
             break;
-        case type_bench_e:
-            //absVec(pos_ - physicalObject.getPos()) < absVec(hitbox_ + physicalObject.getHitbox());
-            //pos_ = physicalObject.getPos() +
+        case type_bench_e: {
+            Vec speed_vec(pos_ - pos_tmp_);
+            float speed_norm = sqrt(speed_vec.x * speed_vec.x + speed_vec.y * speed_vec.y);
+            Vec obj_pos(physicalObject.getPos());
+            Vec obj_hitbox(physicalObject.getHitbox());
+            if(speed_vec.x > 0){
+                if(speed_vec.y > 0){
+
+                } else {
+
+                }
+            } else {
+                if(speed_vec.y > 0){
+
+                } else {
+
+                }
+            }
+            /*
+            if (pos_ > obj_pos) {
+                pos_ = obj_pos + hitbox_ + obj_hitbox;
+            } else if (pos_ < obj_pos) {
+                pos_ = obj_pos - hitbox_ - obj_hitbox;
+            } else if (pos_.x < obj_pos.x && pos_.y > obj_pos.y) {
+                pos_.x = obj_pos.x - hitbox_.x - obj_hitbox.x;
+                pos_.y = obj_pos.y + hitbox_.y + obj_hitbox.y;
+            } else {
+                pos_.x = obj_pos.x + hitbox_.x + obj_hitbox.x;
+                pos_.y = obj_pos.y - hitbox_.y - obj_hitbox.y;
+            }*/
             printf("Train Inspector was stuck into bench!\n");
+        }
             break;
         case type_train_inspector_e:
             printf("Train Inspector was stuck into another train inspector!\n");
