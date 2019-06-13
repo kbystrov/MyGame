@@ -48,7 +48,7 @@ int EnemyObject::setAttackState(bool state) {
 void EnemyObject::setCollidedStatus(bool collidedStatus) {
     wasCollided_ = collidedStatus;
     if(collidedStatus){
-        collisionCount_ = ++collisionCount_ % defCollisCOunt;
+        collisionCount_ = (collisionCount_ + 1) % defCollisCOunt;
     } else {
         collisionCount_ = 0;
     }
@@ -56,7 +56,7 @@ void EnemyObject::setCollidedStatus(bool collidedStatus) {
 
 bool EnemyObject::getCollidedStatus() {
     if(wasCollided_){
-        collisionCount_ = ++collisionCount_ % defCollisCOunt;
+        collisionCount_ = (collisionCount_ + 1) % defCollisCOunt;
     }
     return wasCollided_;
 }
