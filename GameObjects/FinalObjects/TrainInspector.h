@@ -2,6 +2,7 @@
 #define MYGAME_TRAININSPECTOR_H
 
 #include "EnemyObject.h"
+#include "characters.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** @file */

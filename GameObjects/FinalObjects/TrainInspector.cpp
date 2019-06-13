@@ -43,8 +43,11 @@ int TrainInspector::onCollision(PhysicalObject& physicalObject) {
     gameType collided_type = physicalObject.getObjType();
 
     switch(collided_type){
-        case type_main_player_e:
+        case type_main_player_e: {
+            MainPlayer &player = dynamic_cast<MainPlayer &>(physicalObject);
+            player.setCaugthFlag(true);
             printf("Player is caught!\n");
+        }
             break;
         case type_bench_e: {
             dataType collisionTime = sweptAABB(physicalObject);

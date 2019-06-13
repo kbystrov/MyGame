@@ -82,7 +82,8 @@ int MainPlayer::onCollision(PhysicalObject& physicalObject) {
         }
             break;
         case type_train_inspector_e:
-            printf("Train Inspector was stuck into another train inspector!\n");
+            setCaugthFlag(true);
+            printf("Train Inspector has caught player!\n");
             break;
         default:
             printf("Unknown collision!\n");
