@@ -9,7 +9,10 @@
 //! @enum Enumeration list for all objects in game
 enum gameType {
     type_unknown_e = - 1,
-    type_game_obj_e = 1,
+    type_main_player_e = 1,
+    type_train_inspector_e,
+    type_bench_e,
+    type_game_obj_e,
     type_drawable_obj_e,
     type_physical_obj_e,
     type_moveable_obj_e,
@@ -17,9 +20,6 @@ enum gameType {
     type_static_draw_obj_e,
     type_playable_obj_e,
     type_enemy_obj_e,
-    type_train_inspector_e,
-    type_bench_e,
-    type_main_player_e,
     GAME_TYPES_TOTAL
 };
 

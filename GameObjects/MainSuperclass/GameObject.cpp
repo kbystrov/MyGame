@@ -58,7 +58,7 @@ Vec GameObject::getSize() const {
 
 int GameObject::setObjType(gameType obj_type) {
 
-    if(obj_type > GAME_TYPES_TOTAL || obj_type < type_unknown_e || !obj_type){
+    if(obj_type > GAME_TYPES_TOTAL || obj_type < type_unknown_e){
         return ERR_GAMEOBJ_SETOBJTYPE;
     }
 
