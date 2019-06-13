@@ -19,6 +19,16 @@ GameEngine::~GameEngine() {
         fclose(configFile_);
     }
 
+    for (size_t i = 0; i < allObjsCount_; i++) {
+        delete allObjs_[i];
+        allObjs_[i] = nullptr;
+    }
+
+    player_ = nullptr;
+
+    delete allObjs_;
+    allObjs_ = nullptr;
+
     configFile_ = nullptr;
     configName_ = nullptr;
     fileIsOpened_ = false;
@@ -452,7 +462,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
             {
                 for(size_t i = 0; i < staticObjNum_; i++){
                     errno = 0;
-                    Bench * bench = new Bench(Vec(i * 300, i * 300), size, hitbox, texture,
+                    Bench * bench = new Bench(Vec((i + 1) * 300, (i + 1) * 300), size, hitbox, texture,
                                                                          (texture) ? sf::Sprite(*texture) : sf::Sprite());
                     if (!bench) {
                         return ERR_GMENG_GENGMOBJ_STATICOBJ;
@@ -475,10 +485,6 @@ int GameEngine::runGame() {
         music_->play();
     }
 
-    errno = 0;
-    DrawableObject * drawable = new DrawableObject(Vec(100, 100), Vec(50, 50), nullptr, sf::Sprite());
-    ERRNO_CHECK(logfile);
-
     while (window_->isOpen()) {
 
         if (checkStopEvents()) {
@@ -487,39 +493,13 @@ int GameEngine::runGame() {
 
         window_->clear();
 
-        drawable->draw(window_);
-        gameType obj_type = type_unknown_e;
-
         for (size_t i = 0; i < allObjsCount_; i++) {
-
-            obj_type = allObjs_[i]->getObjType();
-
-            switch (obj_type) {
-                case type_main_player_e:
-                    (proc_.*(procFuncArr_[0]))(allObjs_[i], i, *this);
-                    break;
-                case type_train_inspector_e:
-                    (proc_.*(procFuncArr_[1]))(allObjs_[i], i, *this);
-                    break;
-                case type_bench_e:
-                    (proc_.*(procFuncArr_[2]))(allObjs_[i], i, *this);
-                    break;
-                default:
-                    printf("something strange!\n");
-                    break;
-            }
-
+            (proc_.*(procFuncArr_[allObjs_[i]->getObjType()]))(allObjs_[i], i, *this);
         }
 
         window_->display();
 
     }
-
-    for (size_t i = 0; i < allObjsCount_; i++) {
-        delete allObjs_[i];
-    }
-
-    delete drawable;
 
     if (window_->isOpen()) {
         window_->close();
@@ -554,19 +534,6 @@ bool GameEngine::checkStopEvents() {
     }
 
     return false;
-}
-
-int GameEngine::processMovements() {
-    return 0;
-}
-
-int GameEngine::processCollisions() {
-    return 0;
-}
-
-int GameEngine::doRender() {
-
-    return 0;
 }
 
 int GameEngine::objProcessor::procMainPlayer(GameObject * gameObj, size_t objInd, const GameEngine& gameEngine) {

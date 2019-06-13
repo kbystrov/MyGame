@@ -13,14 +13,6 @@
 
 /** @file */
 
-//! Declaration of class GameEngine to use it for function typedef which will be used into GameEngine
-class GameEngine;
-
-/** @def Typedef for function which takes pointer to Game Object as argument and returns int value (for possible error codes)
- * - it is used to have its own managing process for each type of Game Objects in the same  Game Engine
- */
-//typedef int (* objProcFunc)(GameObject *, size_t, const GameEngine&);
-
 //! @class Class for processing all game logic with objects, sounds, textures, etc.
 class GameEngine {
 private:
@@ -80,9 +72,6 @@ private:
 
     //! A group of methods for game processing
     bool checkStopEvents();
-    int processMovements();
-    int processCollisions();
-    int doRender();
 
 public:
     explicit GameEngine(const char * configFileName = defConfigName);
