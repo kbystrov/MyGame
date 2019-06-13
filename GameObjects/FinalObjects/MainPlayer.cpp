@@ -51,6 +51,18 @@ int MainPlayer::move() {
         pos_.y += v_.y;
     }
 
+    if(pos_.x - hitbox_.x < 0){
+        pos_.x = hitbox_.x;
+    } else if(pos_.x + hitbox_.x > 1280){
+        pos_.x = 1280 - hitbox_.x;
+    }
+
+    if(pos_.y - hitbox_.y < 0){
+        pos_.y = hitbox_.y;
+    } else if (pos_.y + hitbox_.x > 720){
+        pos_.y = 720 - hitbox_.y;
+    }
+
     return 0;
 }
 
@@ -60,7 +72,7 @@ int MainPlayer::updateParams() {
     return 0;
 }
 
-int MainPlayer::onCollision(GameObject &physicalObject) {
+int MainPlayer::onCollision(PhysicalObject& physicalObject) {
     printf("MainPlayer is collided!\n");
     return 0;
 }

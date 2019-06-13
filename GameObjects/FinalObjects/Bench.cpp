@@ -32,7 +32,7 @@ Bench::~Bench() {
         texture_ = nullptr;
 }
 
-int Bench::onCollision(GameObject &physicalObject) {
+int Bench::onCollision(PhysicalObject& physicalObject) {
     printf("Bench is collided!\n");
     return 0;
 }

@@ -21,7 +21,7 @@ public:
     int setHitbox(Vec hitbox);
     Vec getHitbox() const;
     bool isCollided(const PhysicalObject& physicalObject) const;
-    virtual int onCollision(GameObject& physicalObject) = 0;
+    virtual int onCollision(PhysicalObject& physicalObject) = 0;
 };
 
 

@@ -360,6 +360,8 @@ int GameEngine::createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, c
 
         window_->setVerticalSyncEnabled(vet_sync_flag);
         window_->setFramerateLimit(frame_rt_lim);
+
+        wind_size_ = Vec(win_w, win_h);
     } else {
         return ERR_GMENG_CRTWIN_WINNUM;
     }

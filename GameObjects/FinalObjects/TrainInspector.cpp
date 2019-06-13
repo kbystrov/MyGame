@@ -38,7 +38,7 @@ TrainInspector::~TrainInspector() {
     trgt_ = nullptr;
 }
 
-int TrainInspector::onCollision(GameObject& physicalObject) {
+int TrainInspector::onCollision(PhysicalObject& physicalObject) {
 
     gameType collided_type = physicalObject.getObjType();
 
@@ -47,6 +47,8 @@ int TrainInspector::onCollision(GameObject& physicalObject) {
             printf("Player is caught!\n");
             break;
         case type_bench_e:
+            //absVec(pos_ - physicalObject.getPos()) < absVec(hitbox_ + physicalObject.getHitbox());
+            //pos_ = physicalObject.getPos() +
             printf("Train Inspector was stuck into bench!\n");
             break;
         case type_train_inspector_e:
@@ -74,6 +76,18 @@ int TrainInspector::move() {
         pos_.y += v_.y;
     } else if (direction.y < (- hitbox_.y)) {
         pos_.y -= v_.y;
+    }
+
+    if(pos_.x - hitbox_.x < 0){
+        pos_.x = hitbox_.x;
+    } else if(pos_.x + hitbox_.x > 1280){
+        pos_.x = 1280 - hitbox_.x;
+    }
+
+    if(pos_.y - hitbox_.y < 0){
+        pos_.y = hitbox_.y;
+    } else if (pos_.y + hitbox_.x > 720){
+        pos_.y = 720 - hitbox_.y;
     }
 
     return 0;

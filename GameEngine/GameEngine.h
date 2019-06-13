@@ -36,6 +36,7 @@ private:
     size_t songsCount_ = 0;                    ///< @param Number of audio compositions used in game
     sf::Texture ** texture_ = nullptr;         ///< @param Array of pointers to all textures used in game
     size_t textureCount_ = 0;                  ///< @param Number of textures used in game
+    Vec wind_size_;
 
     bool cfgObjNumCounted_ = false;
     GameObject ** allObjs_ = nullptr;          ///< @param Array of pointers to all objects in Game

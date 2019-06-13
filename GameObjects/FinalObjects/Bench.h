@@ -12,7 +12,7 @@ public:
 
     virtual ~Bench() override;
 
-    virtual int onCollision(GameObject &physicalObject) override;
+    virtual int onCollision(PhysicalObject &physicalObject) override;
 };
 
 

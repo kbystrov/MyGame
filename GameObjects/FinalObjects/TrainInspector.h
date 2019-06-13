@@ -12,7 +12,7 @@ public:
                             sf::Sprite sprite = sf::Sprite(), sf::Color color = enemyColor, bool attackState = false);
 
     virtual ~TrainInspector() override;
-    int onCollision(GameObject &physicalObject) override;
+    int onCollision(PhysicalObject &physicalObject) override;
 
     int move() override;
     int updateParams() override;
