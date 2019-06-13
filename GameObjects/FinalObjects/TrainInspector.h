@@ -8,6 +8,9 @@
 /** @file */
 
 class TrainInspector: virtual public EnemyObject {
+private:
+    bool vertCollided_ = false;
+    bool horCollided_ = false;
 public:
     explicit TrainInspector(GameObject * trgt = nullptr, Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr,
                             sf::Sprite sprite = sf::Sprite(), sf::Color color = enemyColor, bool attackState = false);

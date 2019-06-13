@@ -580,6 +580,7 @@ int GameEngine::objProcessor::procTrainInspector(GameObject * gameObj, size_t ob
             ERR_CHECK(logfile, 1);
             err_code = physObj->onCollision(*trainInspector);
             ERR_CHECK(logfile, 1);
+            trainInspector->setCollidedStatus(true);
         }
     }
     err_code = trainInspector->updateParams();

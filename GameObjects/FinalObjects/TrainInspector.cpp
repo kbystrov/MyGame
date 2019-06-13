@@ -77,16 +77,45 @@ int TrainInspector::move() {
 
     Vec direction = trgt_->getPos() - pos_;
 
-    if( direction.x > hitbox_.x ){
-        pos_.x += v_.x;
-    } else if ( direction.x < (- hitbox_.x) ){
-        pos_.x -= v_.x;
-    }
+    Vec speed(pos_ - pos_tmp_);
 
-    if( direction.y > hitbox_.y ){
-        pos_.y += v_.y;
-    } else if (direction.y < (- hitbox_.y)) {
-        pos_.y -= v_.y;
+    if(getCollidedStatus() && (collisionCount_ == collisionStep) ){
+
+        if(vertCollided_ && horCollided_){
+            pos_.x -= v_.x;
+            pos_.y -= v_.y;
+            horCollided_ = false;
+            vertCollided_ = false;
+        } else if (horCollided_) {
+            pos_.x -= v_.x;
+            pos_.y += v_.y;
+            vertCollided_ = true;
+        } else if (vertCollided_) {
+            pos_.x += v_.x;
+            pos_.y += v_.y;
+            horCollided_ = true;
+            vertCollided_ = false;
+        } else {
+            pos_.x += v_.x;
+            pos_.y -= v_.y;
+            vertCollided_ = true;
+        }
+
+        setCollidedStatus(false);
+    } else {
+
+        if (direction.x > hitbox_.x) {
+            pos_.x += v_.x;
+        } else if (direction.x < (-hitbox_.x)) {
+            pos_.x -= v_.x;
+        }
+
+        if (direction.y > hitbox_.y) {
+            pos_.y += v_.y;
+        } else if (direction.y < (-hitbox_.y)) {
+            pos_.y -= v_.y;
+        }
+
     }
 
     return 0;
@@ -173,3 +202,5 @@ float TrainInspector::sweptAABB(PhysicalObject& physicalObject) {
     }
 
 }
+
+
