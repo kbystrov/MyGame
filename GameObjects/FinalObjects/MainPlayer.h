@@ -15,6 +15,7 @@ public:
     int move() override;
     int updateParams() override;
     int onCollision(PhysicalObject& physicalObject) override;
+    dataType sweptAABB(PhysicalObject& physicalObject);
 };
 
 

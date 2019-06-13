@@ -13,6 +13,7 @@ public:
 
     virtual ~TrainInspector() override;
     int onCollision(PhysicalObject &physicalObject) override;
+    float sweptAABB(PhysicalObject &physicalObject);
 
     int move() override;
     int updateParams() override;

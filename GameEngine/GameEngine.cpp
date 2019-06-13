@@ -556,6 +556,8 @@ int GameEngine::objProcessor::procMainPlayer(GameObject * gameObj, size_t objInd
             ERR_CHECK(logfile, 1);
         }
     }
+    err_code = player->updateParams();
+    ERR_CHECK(logfile, 1);
 
     return err_code;
 }
@@ -578,6 +580,8 @@ int GameEngine::objProcessor::procTrainInspector(GameObject * gameObj, size_t ob
             ERR_CHECK(logfile, 1);
         }
     }
+    err_code = trainInspector->updateParams();
+    ERR_CHECK(logfile, 1);
 
     return err_code;
 }

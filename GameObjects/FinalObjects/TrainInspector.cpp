@@ -47,40 +47,20 @@ int TrainInspector::onCollision(PhysicalObject& physicalObject) {
             printf("Player is caught!\n");
             break;
         case type_bench_e: {
+            dataType collisionTime = sweptAABB(physicalObject);
             Vec speed_vec(pos_ - pos_tmp_);
-            float speed_norm = sqrt(speed_vec.x * speed_vec.x + speed_vec.y * speed_vec.y);
-            Vec obj_pos(physicalObject.getPos());
-            Vec obj_hitbox(physicalObject.getHitbox());
-            if(speed_vec.x > 0){
-                if(speed_vec.y > 0){
-
-                } else {
-
-                }
-            } else {
-                if(speed_vec.y > 0){
-
-                } else {
-
-                }
-            }
-            /*
-            if (pos_ > obj_pos) {
-                pos_ = obj_pos + hitbox_ + obj_hitbox;
-            } else if (pos_ < obj_pos) {
-                pos_ = obj_pos - hitbox_ - obj_hitbox;
-            } else if (pos_.x < obj_pos.x && pos_.y > obj_pos.y) {
-                pos_.x = obj_pos.x - hitbox_.x - obj_hitbox.x;
-                pos_.y = obj_pos.y + hitbox_.y + obj_hitbox.y;
-            } else {
-                pos_.x = obj_pos.x + hitbox_.x + obj_hitbox.x;
-                pos_.y = obj_pos.y - hitbox_.y - obj_hitbox.y;
-            }*/
+            Vec diff_dist(speed_vec * collisionTime);
+            pos_ = pos_ - diff_dist;
             printf("Train Inspector was stuck into bench!\n");
         }
             break;
-        case type_train_inspector_e:
+        case type_train_inspector_e: {
+            dataType collisionTime = sweptAABB(physicalObject);
+            Vec speed_vec(pos_ - pos_tmp_);
+            Vec diff_dist(speed_vec * collisionTime);
+            pos_ = pos_ - diff_dist;
             printf("Train Inspector was stuck into another train inspector!\n");
+        }
             break;
         default:
             printf("Unknown collision!\n");
@@ -134,4 +114,71 @@ int TrainInspector::findNewTarget() {
 int TrainInspector::flashTarget() {
     trgt_ = nullptr;
     return 0;
+}
+
+float TrainInspector::sweptAABB(PhysicalObject& physicalObject) {
+
+    dataType xInvEntry = 0;
+    dataType yInvEntry = 0;
+    dataType xInvExit = 0;
+    dataType yInvExit = 0;
+
+    Vec speed_vec(pos_ - pos_tmp_);
+    Vec b1_size = hitbox_ * 2;
+    Vec b2_size(physicalObject.getHitbox() * 2);
+
+    Vec b1(pos_ - hitbox_);
+    Vec b2(physicalObject.getPos() - physicalObject.getHitbox());
+
+    // find the distance between the objects on the near and far sides for both x and y
+    if (speed_vec.x > 0.0f) {
+        xInvEntry = (b1.x + b1_size.x) - b2.x;
+        xInvExit = (b2.x + b2_size.x) - b1.x;
+    } else {
+        xInvEntry = (b2.x + b2_size.x) - b1.x;
+        xInvExit = b2.x - (b1.x + b1_size.x);
+    }
+
+    if (speed_vec.y > 0.0f) {
+        yInvEntry = (b1.y + b1_size.y) - b2.y;
+        yInvExit = (b2.y + b2_size.y) - b1.y;
+    } else {
+        yInvEntry = (b2.y + b2_size.y) - b1.y;
+        yInvExit = b2.y - (b1.y + b1_size.y);
+    }
+
+    // find time of collision and time of leaving for each axis (if statement is to prevent divide by zero)
+    dataType xEntry = 0;
+    dataType yEntry = 0;
+    dataType xExit = 0;
+    dataType yExit = 0;
+
+    if (speed_vec.x == 0.0f) {
+        xEntry = -std::numeric_limits<float>::infinity();
+        xExit = std::numeric_limits<float>::infinity();
+    } else {
+        xEntry = xInvEntry / speed_vec.x;
+        xExit = xInvExit / speed_vec.y;
+    }
+
+    if (speed_vec.y == 0.0f) {
+        yEntry = -std::numeric_limits<float>::infinity();
+        yExit = std::numeric_limits<float>::infinity();
+    } else {
+        yEntry = yInvEntry / speed_vec.y;
+        yExit = yInvExit / speed_vec.y;
+    }
+
+    // find the earliest/latest times of collision
+    float entryTime = std::max(xEntry, yEntry);
+    float exitTime = std::min(xExit, yExit);
+
+    // if there was no collision
+    if (entryTime > exitTime || xEntry < 0.0f && yEntry < 0.0f || xEntry > 1.0f || yEntry > 1.0f) {
+        return 1.0f;
+    } else { // if there is collision
+        // return the time of collision
+        return entryTime;
+    }
+
 }

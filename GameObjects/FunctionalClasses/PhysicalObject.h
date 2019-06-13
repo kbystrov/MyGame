@@ -1,6 +1,7 @@
 #ifndef MYGAME_PHYSICALOBJECT_H
 #define MYGAME_PHYSICALOBJECT_H
 
+#include <limits>
 #include "GameObject.h"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

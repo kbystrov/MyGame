@@ -35,6 +35,8 @@ struct RadVec{
     bool operator < (const T val) const { return (x < val || y < val) ? true : false; }
     bool operator > (const RadVec <T> vec) const { return (x > vec.x && y > vec.y) ? true : false; }
     bool operator < (const RadVec <T> vec) const { return (x < vec.x && y < vec.y) ? true : false; }
+
+    RadVec operator * (const T val) { return RadVec( x * val, y * val ); }
 };
 
 template <typename U>
