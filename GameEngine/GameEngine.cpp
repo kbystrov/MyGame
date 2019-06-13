@@ -547,6 +547,7 @@ int GameEngine::objProcessor::procMainPlayer(GameObject * gameObj, size_t objInd
     ERR_CHECK(logfile, 1);
     err_code = player->move();
     ERR_CHECK(logfile, 1);
+    player->checkBounds();
     for(size_t j = objInd + 1; j < gameEngine.allObjsCount_; j++){
         PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(gameEngine.allObjs_[j]);
         if(player->isCollided(*physObj)){
@@ -571,6 +572,7 @@ int GameEngine::objProcessor::procTrainInspector(GameObject * gameObj, size_t ob
     ERR_CHECK(logfile, 1);
     err_code = trainInspector->move();
     ERR_CHECK(logfile, 1);
+    trainInspector->checkBounds();
     for(size_t j = objInd + 1; j < gameEngine.allObjsCount_; j++){
         PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(gameEngine.allObjs_[j]);
         if(trainInspector->isCollided(*physObj)){

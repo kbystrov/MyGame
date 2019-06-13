@@ -66,4 +66,19 @@ bool PhysicalObject::isCollided(const PhysicalObject& physicalObject) const {
 
 }
 
+void PhysicalObject::checkBounds() {
+
+    if(pos_.x - hitbox_.x < 0){
+        pos_.x = hitbox_.x;
+    } else if(pos_.x + hitbox_.x > 1280){
+        pos_.x = 1280 - hitbox_.x;
+    }
+
+    if(pos_.y - hitbox_.y < 0){
+        pos_.y = hitbox_.y;
+    } else if (pos_.y + hitbox_.x > 720){
+        pos_.y = 720 - hitbox_.y;
+    }
+
+}
 

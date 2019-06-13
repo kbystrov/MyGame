@@ -22,6 +22,7 @@ public:
     int setHitbox(Vec hitbox);
     Vec getHitbox() const;
     bool isCollided(const PhysicalObject& physicalObject) const;
+    void checkBounds();
     virtual int onCollision(PhysicalObject& physicalObject) = 0;
 };
 
