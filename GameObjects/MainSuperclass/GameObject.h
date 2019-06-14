@@ -41,6 +41,8 @@ public:
     Vec getSize() const;
     gameType getObjType() const;
     int setObjType(gameType obj_type);
+
+    virtual void pureVirt() {};
 };
 
 #endif //MYGAME_GAMEOBJECT_H
