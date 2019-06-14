@@ -3,8 +3,8 @@
 
 /** @file */
 
-StaticDrawObject::StaticDrawObject(Vec pos, Vec size, Vec hitbox, sf::Texture * texture, sf::Sprite sprite, Vec wind_size, sf::Color color):
-        PhysicalObject(hitbox, pos, size, wind_size), DrawableObject(pos, size, texture, sprite, wind_size, color), GameObject(pos, size, wind_size)
+StaticDrawObject::StaticDrawObject(Vec pos, Vec size, Vec hitbox, sf::Texture * texture, sf::Sprite sprite, Vec sprite_size, Vec wind_size, sf::Color color):
+        PhysicalObject(hitbox, pos, size, wind_size), DrawableObject(pos, size, texture, sprite, sprite_size, wind_size, color), GameObject(pos, size, wind_size)
         {
         #ifdef GAME_DEBUG
         ERRNO_CHECK(logfile);

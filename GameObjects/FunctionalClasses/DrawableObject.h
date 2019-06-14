@@ -10,6 +10,8 @@
 const sf::Color defDrawColor = sf::Color::White;
 //! @def Default thickness for circles
 const int DEF_THICKNESS = 3;
+//! @def Default sprite size
+const Vec defSpriteSize = Vec(16, 32);
 
 //! @class A superclass for drawable objects
 class DrawableObject: virtual public GameObject {
@@ -19,7 +21,7 @@ protected:
     sf::Color color_;                   ///< @param color in case there is no sprite for object
     Vec sprite_size_;                   ///< @param Default sprite size
 public:
-    explicit DrawableObject(Vec pos = defPos, Vec size = defSize, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = defDrawColor);
+    explicit DrawableObject(Vec pos = defPos, Vec size = defSize, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec sprite_size = defSpriteSize, Vec wind_size = defWindSize, sf::Color color = defDrawColor);
 
     virtual ~DrawableObject() override;
 

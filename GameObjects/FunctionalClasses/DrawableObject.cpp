@@ -3,7 +3,7 @@
 
 /** @file */
 
-DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, Vec wind_size, sf::Color color) : GameObject(pos, size, wind_size) {
+DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, Vec sprite_size, Vec wind_size, sf::Color color) : GameObject(pos, size, wind_size) {
 
     #ifdef CTR_DEBUG
     printf("DrawableObject ctr = %p!\n", this);
@@ -21,10 +21,16 @@ DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Spr
     errno = 0;
     #endif
 
+    if(sprite_size < 0) {
+        sprite_size = defSpriteSize;
+    } else {
+        sprite_size_ = sprite_size;
+    }
+
     texture_ = texture;
     sprite_ = sprite;
     color_ = color;
-    sprite_size_ = size_;
+    sprite_size_ = sprite_size;
 }
 
 DrawableObject::~DrawableObject() {
@@ -66,8 +72,8 @@ int DrawableObject::draw(Vec pos, sf::RenderTarget * screen) const {
 
         //sprite.setOrigin   (size_.x/2, size_.y/2);
         sprite.setPosition (pos.x, pos.y);
-        sprite.setTextureRect(sf::IntRect(0, 0, 16, 32));
-        sprite.setScale(sf::Vector2f(2.f, 2.f));
+        sprite.setTextureRect(sf::IntRect(0, 0, sprite_size_.x, sprite_size_.y));
+        sprite.setScale(sf::Vector2f(size_.x / sprite_size_.x, size_.y / sprite_size_.y));
         screen->draw (sprite);
     } else {
         err_code = drawRect (pos_, size_, color_, sf::Color::Transparent, screen);

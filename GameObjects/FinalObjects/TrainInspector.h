@@ -13,7 +13,7 @@ private:
     bool horCollided_ = false;
 public:
     explicit TrainInspector(GameObject * trgt = nullptr, Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr,
-                            sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = enemyColor, bool attackState = false);
+                            sf::Sprite sprite = sf::Sprite(), Vec sprite_size = defSpriteSize, Vec wind_size = defWindSize, sf::Color color = enemyColor, bool attackState = false);
 
     virtual ~TrainInspector() override;
     int onCollision(PhysicalObject &physicalObject) override;

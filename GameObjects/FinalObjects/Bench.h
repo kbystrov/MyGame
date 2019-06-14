@@ -8,7 +8,7 @@
 
 class Bench: virtual public StaticDrawObject {
 public:
-    explicit Bench(Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = defDrawColor);
+    explicit Bench(Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec sprite_size = defSpriteSize, Vec wind_size = defWindSize, sf::Color color = defDrawColor);
 
     virtual ~Bench() override;
 
