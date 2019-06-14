@@ -19,13 +19,13 @@ StaticDrawObject::StaticDrawObject(Vec pos, Vec size, Vec hitbox, sf::Texture * 
         #endif
 
         #ifdef CTR_DEBUG
-        printf("StaticObject ctr = %p!\n", this);
+        fprintf(logfile, "StaticObject ctr = %p!\n", this);
         #endif // !CTR_DEBUG
         }
 
 StaticDrawObject::~StaticDrawObject() {
         #ifdef CTR_DEBUG
-        printf("StaticDrawObject destructor = %p!\n", this);
+        fprintf(logfile, "StaticDrawObject destructor = %p!\n", this);
         #endif // !CTR_DEBUG
 
         texture_ = nullptr;

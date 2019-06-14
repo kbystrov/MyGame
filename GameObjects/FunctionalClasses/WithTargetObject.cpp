@@ -20,13 +20,13 @@ WithTargetObject::WithTargetObject(Vec pos, Vec size, Vec v, Vec wind_size, Game
     trgt_ = trgt;
 
     #ifdef CTR_DEBUG
-    printf("WithTargetObject ctr = %p!\n", this);
+    fprintf(logfile, "WithTargetObject ctr = %p!\n", this);
     #endif // !CTR_DEBUG
 }
 
 WithTargetObject::~WithTargetObject() {
     #ifdef CTR_DEBUG
-    printf("WithTargetObject destructor = %p!\n", this);
+    fprintf(logfile, "WithTargetObject destructor = %p!\n", this);
     #endif // !CTR_DEBUG
 
     trgt_ = nullptr;

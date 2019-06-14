@@ -6,7 +6,7 @@
 DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, Vec sprite_size, Vec wind_size, sf::Color color) : GameObject(pos, size, wind_size) {
 
     #ifdef CTR_DEBUG
-    printf("DrawableObject ctr = %p!\n", this);
+    fprintf(logfile, "DrawableObject ctr = %p!\n", this);
     #endif // !CTR_DEBUG
 
     #ifdef GAME_DEBUG
@@ -36,7 +36,7 @@ DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Spr
 DrawableObject::~DrawableObject() {
 
     #ifdef CTR_DEBUG
-    printf("DrawableObject destructor = %p!\n", this);
+    fprintf(logfile, "DrawableObject destructor = %p!\n", this);
     #endif // !CTR_DEBUG
 
     texture_ = nullptr;

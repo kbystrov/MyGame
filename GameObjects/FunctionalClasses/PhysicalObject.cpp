@@ -6,7 +6,7 @@
 PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size, Vec wind_size): GameObject(pos, size, wind_size) {
 
     #ifdef CTR_DEBUG
-    printf("PhysicalObject ctr = %p!\n", this);
+    fprintf(logfile, "PhysicalObject ctr = %p!\n", this);
     #endif // !CTR_DEBUG
 
     #ifdef GAME_DEBUG
@@ -34,7 +34,7 @@ PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size, Vec wind_size): Ga
 
 PhysicalObject::~PhysicalObject() {
     #ifdef CTR_DEBUG
-    printf("PhysicalObject destructor = %p!\n", this);
+    fprintf(logfile, "PhysicalObject destructor = %p!\n", this);
     #endif // !CTR_DEBUG
 }
 

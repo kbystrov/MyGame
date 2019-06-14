@@ -23,7 +23,7 @@ TrainInspector::TrainInspector(GameObject *trgt, Vec pos, Vec size, Vec hitbox, 
                                 #endif
 
                                 #ifdef CTR_DEBUG
-                                printf("TrainInspector ctr = %p!\n", this);
+                                fprintf(logfile, "TrainInspector ctr = %p!\n", this);
                                 #endif // !CTR_DEBUG
 
                                }
@@ -31,7 +31,7 @@ TrainInspector::TrainInspector(GameObject *trgt, Vec pos, Vec size, Vec hitbox, 
 
 TrainInspector::~TrainInspector() {
     #ifdef CTR_DEBUG
-    printf("\nTrainInspector destructor = %p!\n", this);
+    fprintf(logfile, "\nTrainInspector destructor = %p!\n", this);
     #endif // !CTR_DEBUG
 
     texture_ = nullptr;
@@ -46,7 +46,7 @@ int TrainInspector::onCollision(PhysicalObject& physicalObject) {
         case type_main_player_e: {
             MainPlayer &player = dynamic_cast<MainPlayer &>(physicalObject);
             player.setCaugthFlag(true);
-            printf("Player is caught!\n");
+            fprintf(logfile, "Player is caught!\n");
         }
             break;
         case type_bench_e: {
@@ -54,7 +54,7 @@ int TrainInspector::onCollision(PhysicalObject& physicalObject) {
             Vec speed_vec(pos_ - pos_tmp_);
             Vec diff_dist(speed_vec * collisionTime);
             pos_ = pos_ - diff_dist;
-            printf("Train Inspector was stuck into bench!\n");
+            fprintf(logfile, "Train Inspector was stuck into bench!\n");
         }
             break;
         case type_train_inspector_e: {
@@ -62,11 +62,11 @@ int TrainInspector::onCollision(PhysicalObject& physicalObject) {
             Vec speed_vec(pos_ - pos_tmp_);
             Vec diff_dist(speed_vec * collisionTime);
             pos_ = pos_ - diff_dist;
-            printf("Train Inspector was stuck into another train inspector!\n");
+            fprintf(logfile, "Train Inspector was stuck into another train inspector!\n");
         }
             break;
         default:
-            printf("Unknown collision!\n");
+            fprintf(logfile, "Unknown collision!\n");
             break;
     }
 

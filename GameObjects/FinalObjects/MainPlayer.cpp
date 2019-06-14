@@ -21,13 +21,13 @@ MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture * textu
         #endif
 
         #ifdef CTR_DEBUG
-        printf("MainPlayer ctr = %p!\n\n", this);
+        fprintf(logfile, "MainPlayer ctr = %p!\n\n", this);
         #endif // !CTR_DEBUG
         }
 
 MainPlayer::~MainPlayer() {
     #ifdef CTR_DEBUG
-    printf("\nMainPlayer destructor = %p!\n", this);
+    fprintf(logfile, "\nMainPlayer destructor = %p!\n", this);
     #endif // !CTR_DEBUG
 
     texture_ = nullptr;
@@ -70,7 +70,7 @@ int MainPlayer::onCollision(PhysicalObject& physicalObject) {
             Vec speed_vec(pos_ - pos_tmp_);
             Vec diff_dist(speed_vec * collisionTime);
             pos_ = pos_ - diff_dist;
-            printf("Player was stuck into another player!\n");
+            fprintf(logfile, "Player was stuck into another player!\n");
         }
             break;
         case type_bench_e: {
@@ -78,15 +78,15 @@ int MainPlayer::onCollision(PhysicalObject& physicalObject) {
             Vec speed_vec(pos_ - pos_tmp_);
             Vec diff_dist(speed_vec * collisionTime);
             pos_ = pos_ - diff_dist;
-            printf("Player was stuck into bench!\n");
+            fprintf(logfile, "Player was stuck into bench!\n");
         }
             break;
         case type_train_inspector_e:
             setCaugthFlag(true);
-            printf("Train Inspector has caught player!\n");
+            fprintf(logfile, "Train Inspector has caught player!\n");
             break;
         default:
-            printf("Unknown collision!\n");
+            fprintf(logfile, "Unknown collision!\n");
             break;
     }
 

@@ -1,0 +1,602 @@
+No music for game was found
+ERROR: 16 in LINE: 217 in FILE: /home/kirill/CLionProjects/MyGame/GameEngine/GameEngine.cpp
+ERROR: 16 in LINE: 153 in FILE: /home/kirill/CLionProjects/MyGame/GameEngine/GameEngine.cpp
+ERROR: 16 in LINE: 112 in FILE: /home/kirill/CLionProjects/MyGame/GameEngine/GameEngine.cpp
+ERROR: 16 in LINE: 90 in FILE: /home/kirill/CLionProjects/MyGame/GameEngine/GameEngine.cpp
+ERROR: 16 in LINE: 32 in FILE: /home/kirill/CLionProjects/MyGame/main.cpp
+
+GameObject ctr = 0x181fe70!
+DrawableObject ctr = 0x181fd30!
+PhysicalObject ctr = 0x181fe98!
+MoveableObject ctr = 0x181fea8!
+PlayerableObject ctr = 0x181fd20!
+MainPlayer ctr = 0x181fd20!
+
+
+GameObject ctr = 0x181ec50!
+DrawableObject ctr = 0x181eb10!
+PhysicalObject ctr = 0x181ec78!
+MoveableObject ctr = 0x181ec98!
+WithTargetObject ctr = 0x181ec88!
+EnemyObject ctr = 0x181eb00!
+TrainInspector ctr = 0x181eaf0!
+
+GameObject ctr = 0x181ee20!
+DrawableObject ctr = 0x181ece0!
+PhysicalObject ctr = 0x181ee48!
+MoveableObject ctr = 0x181ee68!
+WithTargetObject ctr = 0x181ee58!
+EnemyObject ctr = 0x181ecd0!
+TrainInspector ctr = 0x181ecc0!
+
+GameObject ctr = 0x181eff0!
+DrawableObject ctr = 0x181eeb0!
+PhysicalObject ctr = 0x181f018!
+MoveableObject ctr = 0x181f038!
+WithTargetObject ctr = 0x181f028!
+EnemyObject ctr = 0x181eea0!
+TrainInspector ctr = 0x181ee90!
+
+GameObject ctr = 0x181faf8!
+DrawableObject ctr = 0x181f9b8!
+PhysicalObject ctr = 0x181fb20!
+StaticObject ctr = 0x181f9b0!
+Bench ctr = 0x181f9b0!
+
+
+GameObject ctr = 0x181fc88!
+DrawableObject ctr = 0x181fb48!
+PhysicalObject ctr = 0x181fcb0!
+StaticObject ctr = 0x181fb40!
+Bench ctr = 0x181fb40!
+
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector has caught player!
+Player is caught!
+Train Inspector was stuck into bench!
+Bench is collided!
+
+MainPlayer destructor = 0x181fd20!
+PlayerableObject destructor = 0x181fd20!
+MoveableObject destructor = 0x181fea8!
+PhysicalObject destructor = 0x181fe98!
+DrawableObject destructor = 0x181fd30!
+GameObject destructor = 0x181fe70!
+
+TrainInspector destructor = 0x181eaf0!
+EnemyObject destructor = 0x181eb00!
+WithTargetObject destructor = 0x181ec88!
+MoveableObject destructor = 0x181ec98!
+PhysicalObject destructor = 0x181ec78!
+DrawableObject destructor = 0x181eb10!
+GameObject destructor = 0x181ec50!
+
+TrainInspector destructor = 0x181ecc0!
+EnemyObject destructor = 0x181ecd0!
+WithTargetObject destructor = 0x181ee58!
+MoveableObject destructor = 0x181ee68!
+PhysicalObject destructor = 0x181ee48!
+DrawableObject destructor = 0x181ece0!
+GameObject destructor = 0x181ee20!
+
+TrainInspector destructor = 0x181ee90!
+EnemyObject destructor = 0x181eea0!
+WithTargetObject destructor = 0x181f028!
+MoveableObject destructor = 0x181f038!
+PhysicalObject destructor = 0x181f018!
+DrawableObject destructor = 0x181eeb0!
+GameObject destructor = 0x181eff0!
+
+Bench destructor = 0x181f9b0!
+StaticDrawObject destructor = 0x181f9b0!
+PhysicalObject destructor = 0x181fb20!
+DrawableObject destructor = 0x181f9b8!
+GameObject destructor = 0x181faf8!
+
+Bench destructor = 0x181fb40!
+StaticDrawObject destructor = 0x181fb40!
+PhysicalObject destructor = 0x181fcb0!
+DrawableObject destructor = 0x181fb48!
+GameObject destructor = 0x181fc88!
+
+GameObject ctr = 0x2b9dca0!
+DrawableObject ctr = 0x2b9db60!
+PhysicalObject ctr = 0x2b9dcc8!
+MoveableObject ctr = 0x2b9dcd8!
+PlayerableObject ctr = 0x2b9db50!
+MainPlayer ctr = 0x2b9db50!
+
+
+GameObject ctr = 0x2b9e7c0!
+DrawableObject ctr = 0x2b9e680!
+PhysicalObject ctr = 0x2b9e7e8!
+MoveableObject ctr = 0x2b9e808!
+WithTargetObject ctr = 0x2b9e7f8!
+EnemyObject ctr = 0x2b9e670!
+TrainInspector ctr = 0x2b9e660!
+
+GameObject ctr = 0x2b9e990!
+DrawableObject ctr = 0x2b9e850!
+PhysicalObject ctr = 0x2b9e9b8!
+MoveableObject ctr = 0x2b9e9d8!
+WithTargetObject ctr = 0x2b9e9c8!
+EnemyObject ctr = 0x2b9e840!
+TrainInspector ctr = 0x2b9e830!
+
+GameObject ctr = 0x2b9eb60!
+DrawableObject ctr = 0x2b9ea20!
+PhysicalObject ctr = 0x2b9eb88!
+MoveableObject ctr = 0x2b9eba8!
+WithTargetObject ctr = 0x2b9eb98!
+EnemyObject ctr = 0x2b9ea10!
+TrainInspector ctr = 0x2b9ea00!
+
+GameObject ctr = 0x2bab348!
+DrawableObject ctr = 0x2bab208!
+PhysicalObject ctr = 0x2bab370!
+StaticObject ctr = 0x2bab200!
+Bench ctr = 0x2bab200!
+
+
+GameObject ctr = 0x2bab4d8!
+DrawableObject ctr = 0x2bab398!
+PhysicalObject ctr = 0x2bab500!
+StaticObject ctr = 0x2bab390!
+Bench ctr = 0x2bab390!
+
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into another train inspector!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector has caught player!
+Player is caught!
+Train Inspector was stuck into bench!
+Bench is collided!
+Train Inspector was stuck into bench!
+Bench is collided!
+
+MainPlayer destructor = 0x2b9db50!
+PlayerableObject destructor = 0x2b9db50!
+MoveableObject destructor = 0x2b9dcd8!
+PhysicalObject destructor = 0x2b9dcc8!
+DrawableObject destructor = 0x2b9db60!
+GameObject destructor = 0x2b9dca0!
+
+TrainInspector destructor = 0x2b9e660!
+EnemyObject destructor = 0x2b9e670!
+WithTargetObject destructor = 0x2b9e7f8!
+MoveableObject destructor = 0x2b9e808!
+PhysicalObject destructor = 0x2b9e7e8!
+DrawableObject destructor = 0x2b9e680!
+GameObject destructor = 0x2b9e7c0!
+
+TrainInspector destructor = 0x2b9e830!
+EnemyObject destructor = 0x2b9e840!
+WithTargetObject destructor = 0x2b9e9c8!
+MoveableObject destructor = 0x2b9e9d8!
+PhysicalObject destructor = 0x2b9e9b8!
+DrawableObject destructor = 0x2b9e850!
+GameObject destructor = 0x2b9e990!
+
+TrainInspector destructor = 0x2b9ea00!
+EnemyObject destructor = 0x2b9ea10!
+WithTargetObject destructor = 0x2b9eb98!
+MoveableObject destructor = 0x2b9eba8!
+PhysicalObject destructor = 0x2b9eb88!
+DrawableObject destructor = 0x2b9ea20!
+GameObject destructor = 0x2b9eb60!
+
+Bench destructor = 0x2bab200!
+StaticDrawObject destructor = 0x2bab200!
+PhysicalObject destructor = 0x2bab370!
+DrawableObject destructor = 0x2bab208!
+GameObject destructor = 0x2bab348!
+
+Bench destructor = 0x2bab390!
+StaticDrawObject destructor = 0x2bab390!
+PhysicalObject destructor = 0x2bab500!
+DrawableObject destructor = 0x2bab398!
+GameObject destructor = 0x2bab4d8!

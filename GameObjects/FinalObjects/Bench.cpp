@@ -20,19 +20,19 @@ Bench::Bench(Vec pos, Vec size, Vec hitbox, sf::Texture *texture, sf::Sprite spr
         #endif
 
         #ifdef CTR_DEBUG
-        printf("Bench ctr = %p!\n\n", this);
+        fprintf(logfile, "Bench ctr = %p!\n\n", this);
         #endif // !CTR_DEBUG
         }
 
 Bench::~Bench() {
         #ifdef CTR_DEBUG
-        printf("\nBench destructor = %p!\n", this);
+        fprintf(logfile, "\nBench destructor = %p!\n", this);
         #endif // !CTR_DEBUG
 
         texture_ = nullptr;
 }
 
 int Bench::onCollision(PhysicalObject& physicalObject) {
-    printf("Bench is collided!\n");
+    fprintf(logfile, "Bench is collided!\n");
     return 0;
 }

@@ -6,7 +6,7 @@
 GameObject::GameObject(Vec pos, Vec size, Vec wind_size) {
 
     #ifdef CTR_DEBUG
-    printf("\nGameObject ctr = %p!\n", this);
+    fprintf(logfile, "\nGameObject ctr = %p!\n", this);
     #endif // !CTR_DEBUG
 
     pos_ = pos;
@@ -33,7 +33,7 @@ GameObject::GameObject(Vec pos, Vec size, Vec wind_size) {
 
 GameObject::~GameObject() {
     #ifdef CTR_DEBUG
-    printf("GameObject destructor = %p!\n", this);
+    fprintf(logfile, "GameObject destructor = %p!\n", this);
     #endif // !CTR_DEBUG
 }
 
