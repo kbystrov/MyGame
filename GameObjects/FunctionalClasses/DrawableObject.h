@@ -17,6 +17,7 @@ protected:
     sf::Texture * texture_ = nullptr;   ///< @param The pointer to this object texture (is stored under GameEngine)
     sf::Sprite sprite_;                 ///< @param object's current sprite
     sf::Color color_;                   ///< @param color in case there is no sprite for object
+    Vec sprite_size_;                   ///< @param Default sprite size
 public:
     explicit DrawableObject(Vec pos = defPos, Vec size = defSize, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = defDrawColor);
 

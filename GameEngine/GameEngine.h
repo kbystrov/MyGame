@@ -69,7 +69,7 @@ private:
     int createWindow(uint32_t win_num, uint32_t win_w, uint32_t win_h, const char * title, bool vet_sync_flag, uint32_t frame_rt_lim);
     int createMusicTracks(uint32_t mus_num, const char * musPath, bool setLoop);
     int createTexture(const char * texture_path, sf::Texture ** texture_ptr);
-    int genGameObjs(gameType obj_type, Vec size = defSize, Vec hitbox = defHitbox, sf::Texture * texture = nullptr, Vec v = defSpeed);
+    int genGameObjs(gameType obj_type, Vec size = defSize, Vec hitbox = defHitbox, sf::Texture * texture = nullptr, Vec v = defSpeed, Vec sprite_size = defSize);
 
     //! A group of methods for game processing
     bool checkStopEvents();

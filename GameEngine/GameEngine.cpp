@@ -293,6 +293,8 @@ int GameEngine::parseObjs(gameType obj_type) {
             dataType v_y = defSpeed.y;
             char texture_path[TMP_STR_SIZE] = {};
             sf::Texture * texture = nullptr;
+            dataType sprite_size_x = defSize.x;
+            dataType sprite_size_y = defSize.y;;
 
             PARSE_CONFIG_PARAMS(configFile_, "%f", size_x, defSize.x);
             PARSE_CONFIG_PARAMS(configFile_, "%f", size_y, defSize.y);
@@ -312,7 +314,12 @@ int GameEngine::parseObjs(gameType obj_type) {
             err_code = createTexture(texture_path, &texture);
             ERR_CHECK(logfile, 1);
 
-            err_code = genGameObjs(obj_type, Vec(size_x, size_y), Vec(hitbox_x, hitbox_y), texture, Vec(v_x, v_y) );
+            if(texture){
+                PARSE_CONFIG_PARAMS(configFile_, "%f", sprite_size_x, defSize.x);
+                PARSE_CONFIG_PARAMS(configFile_, "%f", sprite_size_y, defSize.y);
+            }
+
+            err_code = genGameObjs(obj_type, Vec(size_x, size_y), Vec(hitbox_x, hitbox_y), texture, Vec(v_x, v_y) , Vec(sprite_size_x, sprite_size_y));
             ERR_CHECK(logfile, 1);
 
         } else {
@@ -393,7 +400,7 @@ int GameEngine::createTexture(const char * texture_path, sf::Texture ** texture_
     return 0;
 }
 
-int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture * texture, Vec v) {
+int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture * texture, Vec v, Vec sprite_size) {
 
     static size_t obj_count = 0;
     static bool allocForObjArrayRequired = true;

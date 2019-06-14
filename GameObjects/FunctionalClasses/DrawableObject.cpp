@@ -24,6 +24,7 @@ DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Spr
     texture_ = texture;
     sprite_ = sprite;
     color_ = color;
+    sprite_size_ = size_;
 }
 
 DrawableObject::~DrawableObject() {
@@ -66,7 +67,7 @@ int DrawableObject::draw(Vec pos, sf::RenderTarget * screen) const {
         //sprite.setOrigin   (size_.x/2, size_.y/2);
         sprite.setPosition (pos.x, pos.y);
         sprite.setTextureRect(sf::IntRect(0, 0, 16, 32));
-        sprite.setScale(sf::Vector2f(4.f, 2.f));
+        sprite.setScale(sf::Vector2f(2.f, 2.f));
         screen->draw (sprite);
     } else {
         err_code = drawRect (pos_, size_, color_, sf::Color::Transparent, screen);
