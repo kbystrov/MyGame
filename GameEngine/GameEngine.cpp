@@ -418,7 +418,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
             {
                 errno = 0;
                 MainPlayer * player = new MainPlayer(Vec(500, 500), size, hitbox, v, texture,
-                                                    (texture) ? sf::Sprite(*texture) : sf::Sprite(), wind_size_);
+                                                    (texture) ? sf::Sprite(*texture) : sf::Sprite(), sprite_size, wind_size_);
                 if (player) {
                     player_ = player;
                 } else {
@@ -433,7 +433,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
                 for(size_t i = 0; i < enemyNum_; i++){
                     errno = 0;
                     TrainInspector * trainInspector = new TrainInspector(player_, Vec(i * 200, i * 200), size, hitbox, v, texture,
-                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite(), wind_size_);
+                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite(), sprite_size, wind_size_);
                     if (!trainInspector) {
                         return ERR_GMENG_GENGMOBJ_ENEMY;
                     }
@@ -449,7 +449,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
                 for(size_t i = 0; i < staticObjNum_; i++){
                     errno = 0;
                     Bench * bench = new Bench(Vec((i + 1) * 300, (i + 1) * 300), size, hitbox, texture,
-                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite(), wind_size_);
+                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite(), sprite_size, wind_size_);
                     if (!bench) {
                         return ERR_GMENG_GENGMOBJ_STATICOBJ;
                     }
@@ -552,7 +552,7 @@ int GameEngine::objProcessor::procTrainInspector(GameObject * gameObj, size_t ob
     int err_code = 0;
 
     TrainInspector * trainInspector = dynamic_cast<TrainInspector *>(gameObj);
-    err_code = trainInspector->draw(gameEngine.window_);
+    err_code = trainInspector->draw(trainInspector->getPos() - trainInspector->getHitbox(), gameEngine.window_);
     ERR_CHECK(logfile, 1);
     err_code = trainInspector->move();
     ERR_CHECK(logfile, 1);
@@ -578,7 +578,7 @@ int GameEngine::objProcessor::procBench(GameObject * gameObj, size_t objInd, con
     int err_code = 0;
 
     Bench * bench = dynamic_cast<Bench *>(gameObj);
-    err_code = bench->draw(gameEngine.window_);
+    err_code = bench->draw(bench->getPos() - bench->getHitbox(), gameEngine.window_);
     ERR_CHECK(logfile, 1);
     for(size_t j = objInd + 1; j < gameEngine.allObjsCount_; j++){
         PhysicalObject * physObj = dynamic_cast<PhysicalObject *>(gameEngine.allObjs_[j]);
