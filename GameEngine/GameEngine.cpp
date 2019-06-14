@@ -98,7 +98,7 @@ int GameEngine::initGameEngineParams() {
 int GameEngine::parseConfig() {
 
     if(fileIsOpened_) {
-
+        rewind(configFile_);
         int err_code = 0;
         char tmp[TMP_STR_SIZE] = {};
 
@@ -134,31 +134,8 @@ int GameEngine::parseConfig() {
 int GameEngine::parseConfigWindows() {
 
     if(fileIsOpened_) {
-
         int err_code = 0;
         char tmp[TMP_STR_SIZE] = {};
-
-        while(!feof(configFile_)){
-            fscanf(configFile_, "%s", tmp);
-            if(!strcmp(CFG_DELIM_STR, tmp)){
-                bzero(tmp, TMP_STR_SIZE);
-            } else if (!strcmp(CFG_WIN_GROUP, tmp)) {
-                bzero(tmp, TMP_STR_SIZE);
-                err_code = parseConfigWindows();
-                ERR_CHECK(logfile, 0);
-                if (err_code) return err_code;
-            } else if (!strcmp(CFG_MUS_GROUP, tmp)){
-                bzero(tmp, TMP_STR_SIZE);
-                err_code = parseConfigMusic();
-                ERR_CHECK(logfile, 0);
-                if (err_code) return err_code;
-            } else if (!strcmp(CFG_OBJ_GROUP, tmp)){
-                bzero(tmp, TMP_STR_SIZE);
-                err_code = parseConfigObjects();
-                ERR_CHECK(logfile, 0);
-                if (err_code) return err_code;
-            }
-        }
 
         uint32_t win_num = defWinNum;
         uint32_t win_w = defWinW;
