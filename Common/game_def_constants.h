@@ -13,9 +13,9 @@
             var = def_val; \
         } \
 }
-
 ///! @def Global pointer to main log file which is defined in main() method;
 extern FILE * logfile;
+const char * const defLogPath = "log/gamelog";
 //! @def Default config file for current level
 const char * const defConfigName = "configs/config2.ini";
 //! @def Default size of temporary buffer for read symbols from config lines

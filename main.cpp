@@ -5,16 +5,23 @@
 
 FILE * logfile; ///< @param Global variable for main log of the game
 
-int main()
+int main(int argc, char * argv[])
 {
 
-    if ( (logfile = fopen("log/gamelog", "a")) == nullptr ){
+    const char * configFile = nullptr;
+    if(argc < 2){
+        configFile = defConfigName;
+    } else {
+        configFile = argv[1];
+    }
+
+    if ( (logfile = fopen(defLogPath, "a")) == nullptr ){
         logfile = stderr;
         fprintf(logfile, "Can't open file for logging game - all game warning and error info will be displayed in stderr\n");
     }
 
     errno = 0;
-    GameEngine * gameEngine = new GameEngine();
+    GameEngine * gameEngine = new GameEngine(configFile);
     if(errno == ERR_GMENG_CRT_CONFNAME){
         fprintf(stderr, "No config file is obtained by game!\n");
         return errno;
