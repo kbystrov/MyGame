@@ -22,7 +22,7 @@ protected:
 
 public:
     explicit EnemyObject(GameObject * trgt = nullptr, Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr,
-            sf::Sprite sprite = sf::Sprite(), sf::Color color = enemyColor, bool attackState = false);
+            sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = enemyColor, bool attackState = false);
 
     virtual ~EnemyObject() override;
 

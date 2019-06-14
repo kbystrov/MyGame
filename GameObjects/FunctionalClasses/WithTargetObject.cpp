@@ -3,7 +3,7 @@
 
 /** @file */
 
-WithTargetObject::WithTargetObject(Vec pos, Vec size, Vec v, GameObject * trgt): MoveableObject(pos, size, v), GameObject(pos, size) {
+WithTargetObject::WithTargetObject(Vec pos, Vec size, Vec v, Vec wind_size, GameObject * trgt): MoveableObject(pos, size, v, wind_size), GameObject(pos, size, wind_size) {
 
     #ifdef GAME_DEBUG
     ERRNO_CHECK(logfile);

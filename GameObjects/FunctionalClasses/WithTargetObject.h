@@ -12,7 +12,7 @@ protected:
     GameObject * trgt_ = nullptr; ///< @param Object's target
 
 public:
-    explicit WithTargetObject(Vec pos = defPos, Vec size = defSize, Vec v = defSpeed, GameObject * trgt = nullptr);
+    explicit WithTargetObject(Vec pos = defPos, Vec size = defSize, Vec v = defSpeed, Vec wind_size = defWindSize, GameObject * trgt = nullptr);
 
     virtual ~WithTargetObject() override;
 

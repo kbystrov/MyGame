@@ -3,10 +3,10 @@
 
 /** @file */
 
-MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture * texture, sf::Sprite sprite, sf::Color color)
-        : PlayerableObject(pos, size, hitbox, v, texture, sprite, color),
-        DrawableObject(pos, size, texture, sprite, color), PhysicalObject(hitbox, pos, size),
-        MoveableObject(pos,size, v), GameObject(pos, size)
+MainPlayer::MainPlayer(Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture * texture, sf::Sprite sprite, Vec wind_size, sf::Color color)
+        : PlayerableObject(pos, size, hitbox, v, texture, sprite, wind_size, color),
+        DrawableObject(pos, size, texture, sprite, wind_size, color), PhysicalObject(hitbox, pos, size, wind_size),
+        MoveableObject(pos,size, v, wind_size), GameObject(pos, size, wind_size)
         {
         #ifdef GAME_DEBUG
         ERRNO_CHECK(logfile);

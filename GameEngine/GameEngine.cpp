@@ -434,7 +434,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
             {
                 errno = 0;
                 MainPlayer * player = new MainPlayer(Vec(500, 500), size, hitbox, v, texture,
-                                                    (texture) ? sf::Sprite(*texture) : sf::Sprite());
+                                                    (texture) ? sf::Sprite(*texture) : sf::Sprite(), wind_size_);
                 if (player) {
                     player_ = player;
                 } else {
@@ -449,7 +449,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
                 for(size_t i = 0; i < enemyNum_; i++){
                     errno = 0;
                     TrainInspector * trainInspector = new TrainInspector(player_, Vec(i * 200, i * 200), size, hitbox, v, texture,
-                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite());
+                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite(), wind_size_);
                     if (!trainInspector) {
                         return ERR_GMENG_GENGMOBJ_ENEMY;
                     }
@@ -465,7 +465,7 @@ int GameEngine::genGameObjs(gameType obj_type, Vec size, Vec hitbox, sf::Texture
                 for(size_t i = 0; i < staticObjNum_; i++){
                     errno = 0;
                     Bench * bench = new Bench(Vec((i + 1) * 300, (i + 1) * 300), size, hitbox, texture,
-                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite());
+                                                                         (texture) ? sf::Sprite(*texture) : sf::Sprite(), wind_size_);
                     if (!bench) {
                         return ERR_GMENG_GENGMOBJ_STATICOBJ;
                     }
@@ -543,7 +543,7 @@ int GameEngine::objProcessor::procMainPlayer(GameObject * gameObj, size_t objInd
     int err_code = 0;
 
     MainPlayer * player = dynamic_cast<MainPlayer *>(gameObj);
-    err_code = player->draw(gameEngine.window_);
+    err_code = player->draw(player->getPos() - player->getHitbox(), gameEngine.window_);
     ERR_CHECK(logfile, 1);
     err_code = player->move();
     ERR_CHECK(logfile, 1);

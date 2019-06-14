@@ -17,7 +17,7 @@ protected:
     Vec pos_tmp_; ///<@param radius vector of object's position at the begining of each step (to prevent collisions)
     Vec v_tmp_; ///<@param radius vector of object's speed counted at next iteration of game engine process
 public:
-    explicit MoveableObject(Vec pos = defPos, Vec size = defSize, Vec v = defSpeed);
+    explicit MoveableObject(Vec pos = defPos, Vec size = defSize, Vec v = defSpeed, Vec wind_size = defWindSize);
 
     virtual ~MoveableObject() override;
 

@@ -33,7 +33,6 @@ const char * const CFG_OBJ_GROUP = "OBJECTS";
 
 //! Default window parameters
 const uint32_t defWinNum = 1;
-const uint32_t defWinSize = 1280;
 const uint32_t defWinW = 1280;
 const uint32_t defWinH = 720;
 const char * const defTitle = "Suburban_Train_Game";

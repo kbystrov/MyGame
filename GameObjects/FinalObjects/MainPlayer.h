@@ -8,7 +8,7 @@
 
 class MainPlayer: public PlayerableObject  {
 public:
-    explicit MainPlayer(Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), sf::Color color = playerColor);
+    explicit MainPlayer(Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = playerColor);
 
     virtual ~MainPlayer() override;
 

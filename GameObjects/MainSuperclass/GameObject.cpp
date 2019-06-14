@@ -3,7 +3,7 @@
 
 /** @file */
 
-GameObject::GameObject(Vec pos, Vec size) {
+GameObject::GameObject(Vec pos, Vec size, Vec wind_size) {
 
     #ifdef CTR_DEBUG
     printf("\nGameObject ctr = %p!\n", this);
@@ -18,6 +18,15 @@ GameObject::GameObject(Vec pos, Vec size) {
         #endif // !GAME_DEBUG
     } else {
         size_ = size;
+    }
+
+    if(wind_size < 0){
+        wind_size_ = defWindSize;
+        #ifdef GAME_DEBUG
+        errno = ERR_GAMEOBJ_CTR_SIZE;
+        #endif // !GAME_DEBUG
+    } else {
+        wind_size_ = wind_size;
     }
 
 }

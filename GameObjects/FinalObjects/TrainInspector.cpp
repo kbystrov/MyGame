@@ -4,11 +4,11 @@
 /** @file */
 
 TrainInspector::TrainInspector(GameObject *trgt, Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture *texture,
-                               sf::Sprite sprite, sf::Color color, bool attackState) :
-                               EnemyObject(trgt, pos, size, hitbox, v, texture, sprite, color, attackState),
-                               WithTargetObject(pos, size, v, trgt),
-                               MoveableObject(pos, size, v), PhysicalObject(hitbox, pos, size),
-                               DrawableObject(pos, size, texture, sprite, color), GameObject(pos, size)
+                               sf::Sprite sprite, Vec wind_size, sf::Color color, bool attackState) :
+                               EnemyObject(trgt, pos, size, hitbox, v, texture, sprite, wind_size, color, attackState),
+                               WithTargetObject(pos, size, v, wind_size, trgt),
+                               MoveableObject(pos, size, v, wind_size), PhysicalObject(hitbox, pos, size, wind_size),
+                               DrawableObject(pos, size, texture, sprite, wind_size, color), GameObject(pos, size, wind_size)
                                {
                                 #ifdef GAME_DEBUG
                                 ERRNO_CHECK(logfile);

@@ -18,7 +18,7 @@ protected:
     sf::Sprite sprite_;                 ///< @param object's current sprite
     sf::Color color_;                   ///< @param color in case there is no sprite for object
 public:
-    explicit DrawableObject(Vec pos = defPos, Vec size = defSize, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), sf::Color color = defDrawColor);
+    explicit DrawableObject(Vec pos = defPos, Vec size = defSize, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = defDrawColor);
 
     virtual ~DrawableObject() override;
 

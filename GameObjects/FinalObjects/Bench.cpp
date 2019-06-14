@@ -3,9 +3,9 @@
 
 /** @file */
 
-Bench::Bench(Vec pos, Vec size, Vec hitbox, sf::Texture *texture, sf::Sprite sprite, sf::Color color) :
-        StaticDrawObject(pos, size, hitbox, texture, sprite, color), PhysicalObject(hitbox, pos, size),
-        DrawableObject(pos, size, texture, sprite, color), GameObject(pos, size)
+Bench::Bench(Vec pos, Vec size, Vec hitbox, sf::Texture *texture, sf::Sprite sprite, Vec wind_size, sf::Color color) :
+        StaticDrawObject(pos, size, hitbox, texture, sprite, wind_size, color), PhysicalObject(hitbox, pos, size, wind_size),
+        DrawableObject(pos, size, texture, sprite, wind_size, color), GameObject(pos, size, wind_size)
         {
         #ifdef GAME_DEBUG
         ERRNO_CHECK(logfile);

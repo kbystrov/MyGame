@@ -4,9 +4,9 @@
 /** @file */
 
 EnemyObject::EnemyObject(GameObject * trgt, Vec pos, Vec size, Vec hitbox, Vec v, sf::Texture *texture,
-                         sf::Sprite sprite, sf::Color color, bool attackState):
-                         WithTargetObject(pos, size, v, trgt), PhysicalObject(hitbox, pos, size),
-                         DrawableObject(pos, size, texture, sprite, color), GameObject(pos, size)
+                         sf::Sprite sprite, Vec wind_size,  sf::Color color, bool attackState):
+                         WithTargetObject(pos, size, v, wind_size, trgt), PhysicalObject(hitbox, pos, size, wind_size),
+                         DrawableObject(pos, size, texture, sprite, wind_size, color), GameObject(pos, size, wind_size)
                          {
                             #ifdef GAME_DEBUG
                             ERRNO_CHECK(logfile);

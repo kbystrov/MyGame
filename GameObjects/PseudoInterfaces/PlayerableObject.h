@@ -15,7 +15,7 @@ class PlayerableObject: virtual public DrawableObject, virtual public PhysicalOb
 private:
     bool isCaught_ = false;
 public:
-    explicit PlayerableObject(Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), sf::Color color = playerColor);
+    explicit PlayerableObject(Vec pos = defPos, Vec size = defSize, Vec hitbox = defHitbox, Vec v = defSpeed, sf::Texture * texture = nullptr, sf::Sprite sprite = sf::Sprite(), Vec wind_size = defWindSize, sf::Color color = playerColor);
 
     virtual ~PlayerableObject() override;
 

@@ -3,7 +3,7 @@
 
 /** @file */
 
-DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, sf::Color color) : GameObject(pos, size) {
+DrawableObject::DrawableObject(Vec pos, Vec size, sf::Texture * texture, sf::Sprite sprite, Vec wind_size, sf::Color color) : GameObject(pos, size, wind_size) {
 
     #ifdef CTR_DEBUG
     printf("DrawableObject ctr = %p!\n", this);
@@ -63,8 +63,10 @@ int DrawableObject::draw(Vec pos, sf::RenderTarget * screen) const {
     if (sprite_.getTexture()) {
         sf::Sprite sprite = sprite_;
 
-        sprite.setOrigin   (size_.x/2, size_.y/2);
+        //sprite.setOrigin   (size_.x/2, size_.y/2);
         sprite.setPosition (pos.x, pos.y);
+        sprite.setTextureRect(sf::IntRect(0, 0, 16, 32));
+        sprite.setScale(sf::Vector2f(4.f, 2.f));
         screen->draw (sprite);
     } else {
         err_code = drawRect (pos_, size_, color_, sf::Color::Transparent, screen);

@@ -15,7 +15,7 @@ class PhysicalObject: virtual public GameObject {
 protected:
     Vec hitbox_; ///< @param vector of distance from the center of object ("pos_" field) - determines the zone of collision for object
 public:
-    explicit PhysicalObject(Vec hitbox = defHitbox, Vec pos = defPos, Vec size = defSize);
+    explicit PhysicalObject(Vec hitbox = defHitbox, Vec pos = defPos, Vec size = defSize, Vec wind_size = defWindSize);
 
     virtual ~PhysicalObject() override;
 

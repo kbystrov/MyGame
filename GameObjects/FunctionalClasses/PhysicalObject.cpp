@@ -3,7 +3,7 @@
 
 /** @file */
 
-PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size): GameObject(pos, size) {
+PhysicalObject::PhysicalObject(Vec hitbox, Vec pos, Vec size, Vec wind_size): GameObject(pos, size, wind_size) {
 
     #ifdef CTR_DEBUG
     printf("PhysicalObject ctr = %p!\n", this);

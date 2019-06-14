@@ -19,16 +19,19 @@ using Vec = RadVec<dataType>;
 const Vec defPos = Vec(1, 1);
 //! @def Default object size
 const Vec defSize = Vec(1, 1);
+//! @def Default window size
+const Vec defWindSize = Vec(defWinW, defWinH);
 
-//!@class Base class for all game objects
+//! @class Base class for all game objects
 class GameObject {
 protected:
     gameType obj_type_ = type_game_obj_e;
     Vec pos_;  ///< @param character's coordinates radius vector (x,y,...)
     Vec size_; ///< @param character's size radius vector (x,y,...)
+    Vec wind_size_; ///< @param Default size of game window to checking moving over the window bounds
 
 public:
-    explicit GameObject(Vec pos = defPos, Vec size = defSize);
+    explicit GameObject(Vec pos = defPos, Vec size = defSize, Vec wind_size = defWindSize);
 
     virtual ~GameObject();
 
@@ -39,6 +42,5 @@ public:
     gameType getObjType() const;
     int setObjType(gameType obj_type);
 };
-
 
 #endif //MYGAME_GAMEOBJECT_H
